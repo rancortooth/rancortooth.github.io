@@ -15,7 +15,7 @@
     <div class="center-block">
         <label *ngIf="messageShown" class="accent-color bigger-font">Send me a message!</label>
         <form *ngIf="messageShown" class="email-input" [formGroup]="messageForm" (ngSubmit)="onSubmit()">
-            <textarea style="height: 100px; width: 75%; max-width: 400px" formControlName="message"></textarea><br/>
+            <textarea style="height: 80px; width: 65%; max-width: 400px" formControlName="message"></textarea><br/>
             <button class="button" type="submit">Send</button>
         </form>
         <label *ngIf="!messageShown" class="accent-color">Thank you! Our fully staffed 24/7 call-center will get back to you ASAP. Just kidding. I'll try my best.</label>

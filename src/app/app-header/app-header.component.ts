@@ -30,7 +30,7 @@ export class AppHeaderComponent implements OnInit {
     this.menuToggle = false;
   }
   
-  onClickComics(selection: any) {
+  onClickSubMenu(selection: any) {
     this.router.navigate([selection]);
   }
 }

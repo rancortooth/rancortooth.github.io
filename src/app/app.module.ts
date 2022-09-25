@@ -15,6 +15,8 @@ import { MatButtonModule } from '@angular/material/button'
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table'
 import { MatMenuModule } from '@angular/material/menu';
+import { BlogDrawingTabletsComponent } from './blog-drawing-tablets/blog-drawing-tablets.component';
+import { BlogCreativeMindsetComponent } from './blog-creative-mindset/blog-creative-mindset.component';
 
 @NgModule({
   imports: [
@@ -35,7 +37,9 @@ import { MatMenuModule } from '@angular/material/menu';
     AppHeaderComponent,
     AppAboutComponent,
     AppStarshipflukeComicsComponent,
-    AppBillymeatComicsComponent
+    AppBillymeatComicsComponent,
+    BlogDrawingTabletsComponent,
+    BlogCreativeMindsetComponent,
   ],
   providers: [
     SFImageService
