@@ -24,14 +24,24 @@ export class AppHomeComponent {
  }); 
 
   appState: ApplicationStateService;
-//  displayedColumns: string[] = ['Date', 'Message', 'Image'];
   displayedColumns: string[] = ['Message', 'Image'];
+
+  //
+  // **** UPDATE INFORMATION ****
+  //
+  recentComicNum: string = "20"
+  recentComicTitle: string = "Evolution"
   updates: Update[] = [
     {"date": "9/25/2022", "message": "This website is now in alpha testing!", "link": "/about", "linkMessage": "About Page", "image": "assets/insignia.jpg"},
     {"date": "9/24/2022", "message": "Getting excited to launch soon! Boo-yah!", "link": "", "linkMessage": "", "image": "assets/kuku_icon.png"},
   ]
+  //
+  // *************************
+  //
+
   emailImage: any;
   emailShown: boolean = true;
+  latestComicImage: string= "";
   
   constructor (
     private formBuilder: FormBuilder,
@@ -41,6 +51,7 @@ export class AppHomeComponent {
     this.appState = this.applicationState;
     this.emailImage = "assets/email-signup-1.png"
     this.emailShown = true
+    this.latestComicImage = "assets/starshipfluke-comics/thumbnail" + this.recentComicNum + ".png"
   }
 
   get email(){

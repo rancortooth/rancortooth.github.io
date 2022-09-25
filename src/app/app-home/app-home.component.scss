@@ -6,9 +6,9 @@
 
 .home-parent {
     display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    position: relative;
 }
 
 .home-row {
@@ -21,10 +21,6 @@
 
 .home-column-lg {
     flex: 80%;
-}
-
-.home-top-block {
-    display: inline-block;
 }
 
 .home-copyright {

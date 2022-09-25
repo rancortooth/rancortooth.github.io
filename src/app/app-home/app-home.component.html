@@ -13,56 +13,58 @@
     </div>
     <div class="home-column-lg">
         <div class="home-parent" layout="column">
+
+          <!-- Welcome -->
           <div>
+            <img class="title-image" src="assets/title.jpg">
+          </div>
 
-              <!-- Welcome -->
-              <div class="home-top-block">
-                <img class="title-image" src="assets/title.jpg">
-              </div>
+          <!-- mailing list form -->
+          <div style="padding: 5px; border: 2px solid rgb(173, 173, 173);">
+            <form *ngIf="emailShown" class="email-input" [formGroup]="emailForm" (ngSubmit)="onSubmit()">
+              <input class="email-input-field" style="width: 110px;" formControlName="email" email>
+                <button [disabled]="emailForm.invalid" class="button" type="submit">GO!</button>
+            </form>
+            <img class="email-image" src='{{ emailImage }}'>
+          </div>
 
-              <!-- mailing list form -->
-              <div>
-                <form *ngIf="emailShown" class="email-input" [formGroup]="emailForm" (ngSubmit)="onSubmit()">
-                  <input class="email-input-field" style="width: 110px;" formControlName="email" email>
-                    <button [disabled]="emailForm.invalid" class="button" type="submit">GO!</button>
-                </form>
-                <img class="email-image" src='{{ emailImage }}'>
-              </div>
-
-              <!-- Update messages -->
-              <div class="update-table" >
-                <label>UPDATES:</label>
-                <table mat-table [dataSource]="updates" class="mat-elevation-z8">
-                  <!-- Date Column -->
-                  <!-- <ng-container matColumnDef="Date">
-                    <th mat-header-cell *matHeaderCellDef> Date </th>
-                    <td mat-cell style="color: rgb(216, 206, 144)" *matCellDef="let element"> {{element.date}} </td>
-                  </ng-container> -->
-
-                  <!-- Message Column -->
-                  <ng-container matColumnDef="Message">
-                    <th mat-header-cell *matHeaderCellDef> Message </th>
-                    <td mat-cell *matCellDef="let element">
-                      <label style="color: #e1d716">{{ element.date }}</label><br/>
-                      {{ element.message }}
-                      <a class="accent-color" routerLink="{{ element.link }}">{{ element.linkMessage }}</a>
-                    </td>
-                  </ng-container>
-
-                  <!-- Image Column -->
-                  <ng-container matColumnDef="Image">
-                    <th mat-header-cell *matHeaderCellDef> Image </th>
-                    <td mat-cell *matCellDef="let element"><img width="80px" src="{{element.image}}"></td>
-                  </ng-container>
-
-                  <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> -->
-                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                </table>
-              </div>
-
-              <!-- copyright notice -->
-              <div class="home-copyright">Copyright &copy; 2022 WJ Torlander, Art & Website, All Rights Reserved</div>
+          <!-- Latest comic -->
+          <div style="padding: 10px; display: flex; align-items: center;">
+            <div style="padding: 10px;">
+              <label class="accent-color" style="font-size: 20pt;">Latest Comic:</label><br/>
+              <label style="font-size: 14pt;">{{ recentComicTitle }}</label>
             </div>
+            <a href="starshipfluke/{{ recentComicNum }}"><img src="{{ latestComicImage }}"></a>
+          </div>
+
+          <!-- Update messages -->
+          <div class="update-table">
+            <label>UPDATES:</label>
+            <table mat-table [dataSource]="updates" class="mat-elevation-z8">
+
+              <!-- Message Column -->
+              <ng-container matColumnDef="Message">
+                <th mat-header-cell *matHeaderCellDef> Message </th>
+                <td mat-cell *matCellDef="let element">
+                  <label style="color: #e1d716">{{ element.date }}</label><br/>
+                  {{ element.message }}
+                  <a class="accent-color" routerLink="{{ element.link }}">{{ element.linkMessage }}</a>
+                </td>
+              </ng-container>
+
+              <!-- Image Column -->
+              <ng-container matColumnDef="Image">
+                <th mat-header-cell *matHeaderCellDef> Image </th>
+                <td mat-cell *matCellDef="let element"><img width="80px" src="{{element.image}}"></td>
+              </ng-container>
+
+              <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> -->
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
+
+          <!-- copyright notice -->
+          <div class="home-copyright">Copyright &copy; 2022 WJ Torlander, Art & Website, All Rights Reserved</div>
         </div>
     </div>
   </div>
