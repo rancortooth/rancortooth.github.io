@@ -8,8 +8,8 @@ import { AppStarshipflukeComicsComponent } from './app-starshipfluke-comics/app-
 const routes: Routes = [
   { path: '', component: AppHomeComponent },
   { path: 'about', component: AppAboutComponent },
-  { path: 'starshipfluke', component: AppStarshipflukeComicsComponent },
-  { path: 'billymeat', component: AppBillymeatComicsComponent },
+  { path: 'starshipfluke/:episode', component: AppStarshipflukeComicsComponent },
+  { path: 'billymeat/:episode', component: AppBillymeatComicsComponent },
   { path: '**', redirectTo: '' }
   ];
   

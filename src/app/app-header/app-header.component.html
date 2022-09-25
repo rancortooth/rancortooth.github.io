@@ -1,7 +1,47 @@
-<nav>
-    <a routerLink="/">Home</a>
-    <a routerLink="/starshipfluke">Starship Fluke</a>
-    <a routerLink="/billymeat">Billy Meat</a>
-    <a routerLink="/about">About</a>
-</nav>
-  
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css'>
+
+<div class="mat-typography">
+
+  <div class="topbar" (window:resize)="onResize($event)">
+      <div *ngIf="!appState.getIsMobileResolution()" class="header-column-lg">
+        <div class="primary-color-bg" style="display: inline-block; width: 100%">
+          <nav>
+              <button style="width: 100px;" [routerLink]="'/'" class="nav-button image-button" mat-fab color="primary" aria-label="Home">.</button>
+              <button mat-button [matMenuTriggerFor]="menu">COMICS</button>  
+              <mat-menu #menu="matMenu">
+                  <button class="nav-button" mat-fab color="background" style="width: 140px; height: 50px" class="nav-button" (click)="onClickComics('/starshipfluke/1')">Starship Fluke</button><br>
+                  <button class="nav-button" mat-fab color="background" style="width: 140px; height: 50px" class="nav-button" (click)="onClickComics('/billymeat/1')">Billy Meat</button>
+                </mat-menu>
+              <button style="width: 80px" [routerLink]="'/about'" class="nav-button" mat-fab color="primary" aria-label="About">ABOUT</button>
+            <!-- social media icons -->
+            <div class="wrapper">
+              <a class="icon facebook fab fa-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fstarshipfluke.com{{ router.url }}" rel="noopener" target="_blank" rel="noopener"></a>
+              <a class="icon twitter fab fa-twitter" href="http://twitter.com/share?text=Check it out - &url=https://starshipfluke.com{{ router.url }}&hashtags=starshipfluke" rel="noopener" target="_blank" rel="noopener"></a>
+              <a class="icon reddit fab fa-reddit" href="https://reddit.com/submit?url=https://starshipfluke.com{{ router.url }}&title=Sharing StarShip Fluke!" rel="noopener" target="_blank" rel="noopener"></a>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div *ngIf="appState.getIsMobileResolution()" class="header-column-lg">
+          <div class="hamburger-menu">
+            <input #menutoggle id="menu__toggle" type="checkbox" [(ngModel)]="menuToggle" />
+            <label class="menu__btn" for="menu__toggle">
+              <span></span>
+            </label>
+            <nav class="menu__box">
+              <a (click)="closeMenu()" class="nav-image" routerLink="/"><img height="50px" src="assets/insignia.jpg"></a>
+              <a (click)="closeMenu()" class="menu__item" routerLink="/starshipfluke/1">STARSHIP FLUKE</a>
+              <a (click)="closeMenu()" class="menu__item" routerLink="/billymeat/1">BILLY MEAT</a>
+              <a (click)="closeMenu()" class="menu__item" routerLink="/about">ABOUT</a> 
+            </nav>
+            <!-- social media icons -->
+            <div class="wrapper" style="margin-left: 50px">
+              <a class="icon facebook fab fa-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fstarshipfluke.com{{ router.url }}" rel="noopener" target="_blank" rel="noopener"></a>
+              <a class="icon twitter fab fa-twitter" href="http://twitter.com/share?text=Check it out - &url=https://starshipfluke.com{{ router.url }}&hashtags=starshipfluke" rel="noopener" target="_blank" rel="noopener"></a>
+              <a class="icon reddit fab fa-reddit" href="https://reddit.com/submit?url=https://starshipfluke.com{{ router.url }}&title=Sharing StarShip Fluke!" rel="noopener" target="_blank" rel="noopener"></a>
+            </div>
+          </div>
+      </div>
+  </div>
+
+</div>

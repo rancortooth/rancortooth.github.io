@@ -1,0 +1,89 @@
+.blankspace-sm {
+    display:block;
+    width:100%;
+    height:40px;
+}
+
+.home-parent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.home-row {
+    display: flex;
+}
+  
+.home-column-sm {
+    flex: 20%;
+}
+
+.home-column-lg {
+    flex: 80%;
+}
+
+.home-top-block {
+    display: inline-block;
+}
+
+.home-copyright {
+    opacity: 0.5;
+    text-align: center;
+    padding: 20px;
+}
+
+.home-ad-margins {
+    margin: 5px;
+    border: 1px solid rgb(69, 69, 69);
+}
+
+.title-image {
+    width: 90%;
+    margin: auto;
+    display: block;
+}
+
+.email-image {
+    width: 350px;
+}
+
+.email-input {
+    position: absolute;
+    margin-top: 68px;
+    margin-left: 186px;
+    z-index: 20;
+}
+
+.email-input-field.ng-invalid.ng-touched {
+    border: 2px solid red;
+}
+
+.update-image {
+    width: 60px;
+}
+
+.update-table {
+    margin: 5px;
+}
+
+.mat-row {
+  height: 50px;
+}
+  
+.mat-cell {
+  padding: 10px;
+}
+
+.mat-row:nth-child(even){
+    background-color: rgb(57, 57, 57);
+}
+
+.mat-column-Date {
+    width: 10%
+}
+
+.mat-column-Message {
+    width: 80%
+}
+

@@ -1,1 +1,56 @@
-<p>app-starshipfluke-comics works!</p>
+<div class="mat-typography app-frame mat-app-background">
+
+    <div class="row">
+
+        <!-- AD SPACE -->
+        <div (window:resize)="onResize($event)">
+            <div class="blankspace-sm"><!-- space holder --></div>
+            <div *ngIf="!appState.getIsMobileResolution()">
+                <div class="column-sm">
+                    <img width="250px" class="ad-margins" src="assets/retrozoltan_ad.jpg">
+                </div>
+            </div>
+        </div>
+        <div class="column-lg">
+            <div class="parent" layout="column">
+                <!-- comic display -->
+                <div #scrollwrap class="scrolling-wrapper-vert">
+                    <div>
+                        <img src="{{ image.url }}" id="responsive-image">
+                    </div>
+                    <div style="display: flex; justify-content: center">
+                        <!-- AD SPACE -->
+                        <img width="300px" class="ad-margins" src="assets/retrozoltan_ad.jpg">
+                    </div>
+                    <div class="copyright">Copyright &copy; 2022 WJ Torlander, Art & Website, All Rights Reserved</div>
+                </div>
+
+                <!-- Next/Prev comic buttons -->
+                <div class="button-prev">
+                    <button style="width: 55px" class="button-opacity" *ngIf="this.prevComicButtonHidden" (click)="onPrevComic()" mat-fab color="primary" aria-label="Next Comic">
+                        <mat-icon>arrow_back_ios</mat-icon>
+                    </button>
+                </div>
+                <div class="button-next">
+                    <button style="width: 55px" class="button-opacity" *ngIf="this.nextComicButtonHidden" (click)="onNextComic()" mat-fab color="primary" aria-label="Previous Comic">
+                        <mat-icon>arrow_forward_ios</mat-icon>
+                    </button>
+                </div>
+
+                <!-- horizontal scrolling menu -->
+                <div class="footer">    
+                    <div class="scrolling-wrapper">
+                        <ul style="display: block; margin-left:auto; margin-right: auto;">    
+                            <li *ngFor="let img of allImages">
+                            <a (click)="onSelectComic(img.id)" [routerLink]="['/starshipfluke', img.id]">
+                                <img [ngStyle]="{ 'filter' : (img.id == episode) ? 'grayscale(0%) contrast(100%)' : 'grayscale(100%) contrast(25%)' }" src="{{ img.thumbnail }}" class="thumbnail">
+                            </a>    
+                            </li>    
+                        </ul>    
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+
+</div>
