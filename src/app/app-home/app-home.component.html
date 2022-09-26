@@ -23,7 +23,7 @@
           <div style="padding: 5px; border: 2px solid rgb(173, 173, 173);">
             <form *ngIf="emailShown" class="email-input" [formGroup]="emailForm" (ngSubmit)="onSubmit()">
               <input class="email-input-field" style="width: 110px;" formControlName="email" email>
-                <button [disabled]="emailForm.invalid" class="button" type="submit">GO!</button>
+                <button [disabled]="emailForm.invalid" class="email-button" type="submit">GO!</button>
             </form>
             <img class="email-image" src='{{ emailImage }}'>
           </div>
