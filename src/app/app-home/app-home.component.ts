@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ApplicationStateService } from '../application-state.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 export interface Update {
   date: string;
@@ -46,8 +47,17 @@ export class AppHomeComponent {
   constructor (
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private applicationState: ApplicationStateService
-  ) { 
+    private applicationState: ApplicationStateService,
+    private meta: Meta,
+    private title:Title
+  ) {
+    this.title.setTitle("Starship Fluke - Web Comics and Blogs!")
+    this.meta.addTags([
+      { name: 'description', content: 'Come explore web comics featuring the zany crew of the Starship Fluke! Features comics and blogs by wjtorlander full of sci-fi and comedy fun' },
+      { name: 'robots', content: 'index,follow'} ,
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:site', content: '@wjtorlander' },
+    ]);
     this.appState = this.applicationState;
     this.emailImage = "assets/email-signup-1.png"
     this.emailShown = true

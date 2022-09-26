@@ -34,7 +34,7 @@
               <label class="accent-color" style="font-size: 20pt;">Latest Comic:</label><br/>
               <label style="font-size: 14pt;">{{ recentComicTitle }}</label>
             </div>
-            <a href="starshipfluke/{{ recentComicNum }}"><img src="{{ latestComicImage }}"></a>
+            <a [routerLink]="['/starshipfluke', recentComicNum]"><img src="{{ latestComicImage }}"></a>
           </div>
 
           <!-- Update messages -->

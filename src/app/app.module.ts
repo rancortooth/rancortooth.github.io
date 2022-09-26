@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppHomeComponent } from './app-home/app-home.component';
@@ -42,7 +42,8 @@ import { BlogCreativeMindsetComponent } from './blog-creative-mindset/blog-creat
     BlogCreativeMindsetComponent,
   ],
   providers: [
-    SFImageService
+    SFImageService,
+    Title
   ],
   bootstrap: [
     AppComponent
