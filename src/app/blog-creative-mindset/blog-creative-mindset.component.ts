@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-blog-creative-mindset',
@@ -7,7 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlogCreativeMindsetComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private meta: Meta,
+    private title:Title
+  ) { 
+    this.title.setTitle("Starship Fluke Blog - Creative Mindset")
+    this.meta.addTags([
+      { name: 'description', content: 'Blog on how to get into a creative mindset and setup your environment to foster creativity' },
+      { name: 'robots', content: 'index,follow'} ,
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:site', content: '@wjtorlander' },
+    ]);
+  }
 
   ngOnInit(): void {
   }

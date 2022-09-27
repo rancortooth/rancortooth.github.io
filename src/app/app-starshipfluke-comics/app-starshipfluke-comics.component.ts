@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
 import { ApplicationStateService } from '../application-state.service';
 import { SFImageService } from '../sfimage.service';    
@@ -26,10 +27,20 @@ export class AppStarshipflukeComicsComponent implements OnInit, OnChanges, After
     private route: ActivatedRoute,
     private router: Router,
     private imageService: SFImageService,
-    private applicationState: ApplicationStateService
+    private applicationState: ApplicationStateService,
+    private meta: Meta,
+    private title:Title
     ) {
     this.allImages = this.imageService.getImages();
     this.appState = this.applicationState;
+    this.title.setTitle("Starship Fluke - Web Comics")
+    this.meta.addTags([
+      { name: 'description', content: 'Come explore web comics featuring the zany crew of the Starship Fluke! Features comics and blogs by wjtorlander full of sci-fi and comedy fun' },
+      { name: 'robots', content: 'index,follow'} ,
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:site', content: '@wjtorlander' },
+    ]);
+
   }
 
   ngAfterViewInit(): void {
