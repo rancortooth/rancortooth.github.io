@@ -7,7 +7,7 @@
         <div class="blankspace-sm"><!-- space holder --></div>
         <div *ngIf="!appState.getIsMobileResolution()">
             <div class="home-column-sm">
-                <img width="250px" class="home-ad-margins" src="assets/retrozoltan_ad.jpg">
+                <img alt="Retrozoltan for all your retro gaming needs, product sales and reviews" width="250px" class="home-ad-margins" src="assets/retrozoltan_ad.jpg">
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
 
           <!-- Welcome -->
           <div>
-            <img class="title-image" src="assets/title.jpg">
+            <img alt="Welcome to Starship Fluke" class="title-image" src="assets/title.jpg">
           </div>
 
           <!-- mailing list form -->
@@ -25,7 +25,7 @@
               <input class="email-input-field" style="width: 110px;" formControlName="email" email>
                 <button [disabled]="emailForm.invalid" class="email-button" type="submit">GO!</button>
             </form>
-            <img class="email-image" src='{{ emailImage }}'>
+            <img class="email-image" src='{{ emailImage }}' alt="Email sign up for Starship Fluke updates">
           </div>
 
           <!-- Latest comic -->
@@ -34,7 +34,7 @@
               <label class="accent-color" style="font-size: 20pt;">Latest Comic:</label><br/>
               <label style="font-size: 14pt;">{{ recentComicTitle }}</label>
             </div>
-            <a [routerLink]="['/starshipfluke', recentComicNum]"><img src="{{ latestComicImage }}"></a>
+            <a [routerLink]="['/starshipfluke', recentComicNum]"><img alt="Episode {{ recentComicNum }} - {{ recentComicTitle }}" src="{{ latestComicImage }}"></a>
           </div>
 
           <!-- Update messages -->
@@ -55,7 +55,7 @@
               <!-- Image Column -->
               <ng-container matColumnDef="Image">
                 <th mat-header-cell *matHeaderCellDef> Image </th>
-                <td mat-cell *matCellDef="let element"><img width="80px" src="{{element.image}}"></td>
+                <td mat-cell *matCellDef="let element"><img alt="Starship Fluke update from {{ element.date }}" width="80px" src="{{element.image}}"></td>
               </ng-container>
 
               <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> -->

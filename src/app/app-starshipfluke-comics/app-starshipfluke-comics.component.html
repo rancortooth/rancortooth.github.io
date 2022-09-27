@@ -7,7 +7,7 @@
             <div class="blankspace-sm"><!-- space holder --></div>
             <div *ngIf="!appState.getIsMobileResolution()">
                 <div class="column-sm">
-                    <img width="250px" class="ad-margins" src="assets/retrozoltan_ad.jpg">
+                    <img alt="Retrozoltan for all your retro gaming needs, product sales and reviews" width="250px" class="ad-margins" src="assets/retrozoltan_ad.jpg">
                 </div>
             </div>
         </div>
@@ -16,11 +16,11 @@
                 <!-- comic display -->
                 <div #scrollwrap class="scrolling-wrapper-vert">
                     <div>
-                        <img src="{{ image.url }}" id="responsive-image">
+                        <img alt="Episode {{ episode }} of Starship Fluke" src="{{ image.url }}" id="responsive-image">
                     </div>
                     <div style="display: flex; justify-content: center">
                         <!-- AD SPACE -->
-                        <img width="300px" class="ad-margins" src="assets/retrozoltan_ad.jpg">
+                        <img alt="Retrozoltan for all your retro gaming needs, product sales and reviews" width="300px" class="ad-margins" src="assets/retrozoltan_ad.jpg">
                     </div>
                     <div class="copyright">Copyright &copy; 2022 WJ Torlander, Art & Website, All Rights Reserved</div>
                 </div>
@@ -43,7 +43,7 @@
                         <ul style="display: block; margin-left:auto; margin-right: auto;">    
                             <li *ngFor="let img of allImages">
                             <a (click)="onSelectComic(img.id)" [routerLink]="['/starshipfluke', img.id]">
-                                <img [ngStyle]="{ 'filter' : (img.id == episode) ? 'grayscale(0%) contrast(100%)' : 'grayscale(100%) contrast(25%)' }" src="{{ img.thumbnail }}" class="thumbnail">
+                                <img alt="Episode {{ episode }}" [ngStyle]="{ 'filter' : (img.id == episode) ? 'grayscale(0%) contrast(100%)' : 'grayscale(100%) contrast(25%)' }" src="{{ img.thumbnail }}" class="thumbnail">
                             </a>    
                             </li>    
                         </ul>    
