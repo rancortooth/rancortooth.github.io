@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Meta, Title } from '@angular/platform-browser';
+import { MetaService } from '../meta-service.service';
 
 @Component({
   selector: 'app-app-about',
@@ -18,7 +19,8 @@ export class AppAboutComponent implements OnInit {
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private meta: Meta,
-    private title:Title
+    private title:Title,
+    private metaService: MetaService
   ) {
     this.title.setTitle("Starship Fluke About Site and Author")
     this.meta.addTags([
@@ -27,6 +29,7 @@ export class AppAboutComponent implements OnInit {
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:site', content: '@wjtorlander' },
     ]);
+    this.metaService.createCanonicalURL();
    }
 
   ngOnInit(): void {

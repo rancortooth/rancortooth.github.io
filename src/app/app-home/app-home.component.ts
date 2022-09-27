@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ApplicationStateService } from '../application-state.service';
 import { Meta, Title } from '@angular/platform-browser';
+import { MetaService } from '../meta-service.service';
 
 export interface Update {
   date: string;
@@ -49,7 +50,8 @@ export class AppHomeComponent {
     private http: HttpClient,
     private applicationState: ApplicationStateService,
     private meta: Meta,
-    private title:Title
+    private title:Title,
+    private metaService: MetaService
   ) {
     this.title.setTitle("Starship Fluke - Web Comics and Blogs!")
     this.meta.addTags([
@@ -62,6 +64,7 @@ export class AppHomeComponent {
     this.emailImage = "assets/email-signup-1.png"
     this.emailShown = true
     this.latestComicImage = "assets/starshipfluke-comics/thumbnail" + this.recentComicNum + ".png"
+    this.metaService.createCanonicalURL();
   }
 
   get email(){

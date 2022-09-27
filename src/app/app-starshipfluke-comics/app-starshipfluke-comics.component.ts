@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnChanges, OnInit, ViewChild } fr
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router'
 import { ApplicationStateService } from '../application-state.service';
+import { MetaService } from '../meta-service.service';
 import { SFImageService } from '../sfimage.service';    
 
 @Component({
@@ -29,7 +30,8 @@ export class AppStarshipflukeComicsComponent implements OnInit, OnChanges, After
     private imageService: SFImageService,
     private applicationState: ApplicationStateService,
     private meta: Meta,
-    private title:Title
+    private title:Title,
+    private metaService: MetaService
     ) {
     this.allImages = this.imageService.getImages();
     this.appState = this.applicationState;
@@ -40,7 +42,7 @@ export class AppStarshipflukeComicsComponent implements OnInit, OnChanges, After
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:site', content: '@wjtorlander' },
     ]);
-
+    this.metaService.createCanonicalURL();
   }
 
   ngAfterViewInit(): void {

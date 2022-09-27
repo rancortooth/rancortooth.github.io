@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { MetaService } from '../meta-service.service';
 
 @Component({
   selector: 'app-blog-drawing-tablets',
@@ -10,7 +11,8 @@ export class BlogDrawingTabletsComponent implements OnInit {
 
   constructor(
     private meta: Meta,
-    private title:Title
+    private title:Title,
+    private metaService: MetaService
   ) {
     this.title.setTitle("Starship Fluke Blog - Drawing Tablets With or Without Screens")
     this.meta.addTags([
@@ -19,6 +21,7 @@ export class BlogDrawingTabletsComponent implements OnInit {
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:site', content: '@wjtorlander' },
     ]);
+    this.metaService.createCanonicalURL();
    }
 
   ngOnInit(): void {
