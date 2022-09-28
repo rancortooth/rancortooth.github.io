@@ -17,6 +17,7 @@ import { MatTableModule } from '@angular/material/table'
 import { MatMenuModule } from '@angular/material/menu';
 import { BlogDrawingTabletsComponent } from './blog-drawing-tablets/blog-drawing-tablets.component';
 import { BlogCreativeMindsetComponent } from './blog-creative-mindset/blog-creative-mindset.component';
+import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { BlogCreativeMindsetComponent } from './blog-creative-mindset/blog-creat
     MatIconModule,
     MatButtonModule,
     MatTableModule,
-    MatMenuModule
+    MatMenuModule,
+    NgxGoogleAnalyticsModule.forRoot('G-F6GT7CXJ8Q')
   ],
   declarations: [
     AppComponent,
