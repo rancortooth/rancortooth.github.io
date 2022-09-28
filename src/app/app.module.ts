@@ -18,6 +18,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { BlogDrawingTabletsComponent } from './blog-drawing-tablets/blog-drawing-tablets.component';
 import { BlogCreativeMindsetComponent } from './blog-creative-mindset/blog-creative-mindset.component';
 import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
+import { BMImageService } from './bmimage.service';
 
 @NgModule({
   imports: [
@@ -45,6 +46,7 @@ import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
   ],
   providers: [
     SFImageService,
+    BMImageService,
     Title
   ],
   bootstrap: [
