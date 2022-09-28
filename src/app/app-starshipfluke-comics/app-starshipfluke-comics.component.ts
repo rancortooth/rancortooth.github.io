@@ -23,6 +23,7 @@ export class AppStarshipflukeComicsComponent implements OnInit, OnChanges, After
   prevComicButtonHidden: boolean = true;
   
   @ViewChild('scrollwrap', {static:false}) scrolldiv!: ElementRef;
+  @ViewChild('scrollcomicbar', {static:false}) scrollcomicbar!: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
@@ -96,11 +97,13 @@ export class AppStarshipflukeComicsComponent implements OnInit, OnChanges, After
     this.episode = this.episode + 1
     this.showHideComicNavButtons()
     this.router.navigateByUrl('/starshipfluke/' + this.episode)
+    this.scrollcomicbar.nativeElement.scrollTo((this.episode - 4) * 70, 0)
   }
 
   onPrevComic() {
     this.episode = this.episode - 1
     this.showHideComicNavButtons()
     this.router.navigateByUrl('/starshipfluke/' + this.episode)
+    this.scrollcomicbar.nativeElement.scrollTo((this.episode - 4) * 70, 0)
   }
 }
