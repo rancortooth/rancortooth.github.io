@@ -48,17 +48,16 @@
                 <td mat-cell *matCellDef="let element">
                   <label style="color: #e1d716">{{ element.date }}</label><br/>
                   {{ element.message }}
-                  <a class="accent-color" routerLink="{{ element.link }}">{{ element.linkMessage }}</a>
+                  <a class="accent-color" routerLink="{{ element.link }}" fragment="{{ element.fragment }}">{{ element.linkMessage }}</a>
                 </td>
               </ng-container>
 
               <!-- Image Column -->
               <ng-container matColumnDef="Image">
                 <th mat-header-cell *matHeaderCellDef> Image </th>
-                <td mat-cell *matCellDef="let element"><img alt="Starship Fluke update from {{ element.date }}" width="80px" src="{{element.image}}"></td>
+                <td mat-cell *matCellDef="let element"><a routerLink="{{ element.link }}" fragment="{{ element.fragment }}"><img alt="Starship Fluke update from {{ element.date }}" width="80px" src="{{element.image}}"></a></td>
               </ng-container>
 
-              <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> -->
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
           </div>

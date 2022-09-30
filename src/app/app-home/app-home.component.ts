@@ -9,6 +9,7 @@ export interface Update {
   date: string;
   message: string;
   link: string;
+  fragment: string;
   linkMessage: string;
   image: string;
 }
@@ -34,8 +35,9 @@ export class AppHomeComponent {
   recentComicNum: string = "20"
   recentComicTitle: string = "Evolution"
   updates: Update[] = [
-    {"date": "9/25/2022", "message": "This website is now in alpha testing!", "link": "/about", "linkMessage": "About Page", "image": "assets/insignia.jpg"},
-    {"date": "9/24/2022", "message": "Getting excited to launch soon! Boo-yah!", "link": "", "linkMessage": "", "image": "assets/kuku_icon.png"},
+    {"date": "9/28/2022", "message": "Got the Billy Meat comics uploaded", "link": "/billymeat/1", "fragment":"headertop", "linkMessage": "Billy Meat", "image": "assets/billymeat-comics/thumbnail02.png"},
+    {"date": "9/25/2022", "message": "This website is now in alpha testing!", "link": "/about", "fragment":"headertop", "linkMessage": "About Page", "image": "assets/insignia.jpg"},
+    {"date": "9/24/2022", "message": "Getting excited to launch soon! Boo-yah!", "link": "", "fragment":"", "linkMessage": "", "image": "assets/kuku_icon.png"},
   ]
   //
   // *************************
