@@ -39,7 +39,7 @@ export class AppStarshipflukeComicsComponent implements OnInit, OnChanges, After
     this.title.setTitle("Starship Fluke - Web Comics")
     this.meta.addTags([
       { name: 'description', content: 'Come explore web comics featuring the zany crew of the Starship Fluke! Features comics and blogs by wjtorlander full of sci-fi and comedy fun' },
-      { name: 'robots', content: 'index,follow'} ,
+      { name: 'robots', content: 'noindex'} ,
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:site', content: '@wjtorlander' },
     ]);

@@ -17,7 +17,7 @@ export class BlogDrawingTabletsComponent implements OnInit {
     this.title.setTitle("Starship Fluke Blog - Drawing Tablets With or Without Screens")
     this.meta.addTags([
       { name: 'description', content: 'Blog on experiences using drawing tablets with or without screens' },
-      { name: 'robots', content: 'index,follow'} ,
+      { name: 'robots', content: 'noindex'} ,
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:site', content: '@wjtorlander' },
     ]);
