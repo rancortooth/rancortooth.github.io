@@ -23,7 +23,7 @@ import { BMImageService } from './bmimage.service';
 @NgModule({
   imports: [
     AppRoutingModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,

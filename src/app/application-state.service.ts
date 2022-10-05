@@ -11,10 +11,12 @@ export class ApplicationStateService {
   }
 
   public checkSize() {
-    if (window.innerWidth < 768) {
-      this.isMobileResolution = true;
-    } else {
-      this.isMobileResolution = false;
+    if (typeof window != "undefined") {
+      if (window.innerWidth < 768) {
+        this.isMobileResolution = true;
+      } else {
+        this.isMobileResolution = false;
+      }
     }
   }
 
