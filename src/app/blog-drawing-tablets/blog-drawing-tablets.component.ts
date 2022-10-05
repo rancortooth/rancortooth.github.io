@@ -15,6 +15,7 @@ export class BlogDrawingTabletsComponent implements OnInit {
     private metaService: MetaService
   ) {
     this.title.setTitle("Starship Fluke Blog - Drawing Tablets With or Without Screens")
+    this.meta.removeTag('name=robots'); 
     this.meta.addTags([
       { name: 'description', content: 'Blog on experiences using drawing tablets with or without screens' },
       { name: 'robots', content: 'noindex'} ,

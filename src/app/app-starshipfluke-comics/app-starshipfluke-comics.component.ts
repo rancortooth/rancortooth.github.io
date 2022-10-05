@@ -39,7 +39,6 @@ export class AppStarshipflukeComicsComponent implements OnInit, OnChanges, After
     this.title.setTitle("Starship Fluke - Web Comics")
     this.meta.addTags([
       { name: 'description', content: 'Come explore web comics featuring the zany crew of the Starship Fluke! Features comics and blogs by wjtorlander full of sci-fi and comedy fun' },
-      { name: 'robots', content: 'noindex'} ,
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:site', content: '@wjtorlander' },
     ]);
@@ -49,7 +48,13 @@ export class AppStarshipflukeComicsComponent implements OnInit, OnChanges, After
   ngAfterViewInit(): void {
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
-          return;
+        this.meta.removeTag('name=robots'); 
+        if (this.episode == 1) {
+          this.meta.addTags([{ name: 'robots', content: 'index'}]);
+        } else {
+          this.meta.addTags([{ name: 'robots', content: 'noindex'}]);
+        }
+        return;
       }
       this.scrolldiv.nativeElement.scrollTop = 0
     });

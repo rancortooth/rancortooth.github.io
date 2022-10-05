@@ -56,6 +56,7 @@ export class AppHomeComponent {
     private metaService: MetaService
   ) {
     this.title.setTitle("Starship Fluke - Web Comics and Blogs!")
+    this.meta.removeTag('name=robots'); 
     this.meta.addTags([
       { name: 'description', content: 'Come explore web comics featuring the zany crew of the Starship Fluke! Features comics and blogs by wjtorlander full of sci-fi and comedy fun' },
       { name: 'robots', content: 'index,follow'} ,

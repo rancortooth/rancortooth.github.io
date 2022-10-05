@@ -23,9 +23,10 @@ export class AppAboutComponent implements OnInit {
     private metaService: MetaService
   ) {
     this.title.setTitle("Starship Fluke About Site and Author")
+    this.meta.removeTag('name=robots'); 
     this.meta.addTags([
       { name: 'description', content: 'About Starship Fluke and contact information' },
-      { name: 'robots', content: 'index,follow'} ,
+      { name: 'robots', content: 'noindex'} ,
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:site', content: '@wjtorlander' },
     ]);

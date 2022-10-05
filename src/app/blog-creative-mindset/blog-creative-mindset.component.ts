@@ -15,6 +15,7 @@ export class BlogCreativeMindsetComponent implements OnInit {
     private metaService: MetaService
   ) { 
     this.title.setTitle("Starship Fluke Blog - Creative Mindset")
+    this.meta.removeTag('name=robots'); 
     this.meta.addTags([
       { name: 'description', content: 'Blog on how to get into a creative mindset and setup your environment to foster creativity' },
       { name: 'robots', content: 'noindex'} ,
