@@ -6,8 +6,8 @@
       "name": "Chrome",
       "type": "pwa-chrome",
       "request": "launch",
-      "preLaunchTask": "npm: start",
-      "url": "http://localhost:4200/"
+      "preLaunchTask": "npm: serve:ssr",
+      "url": "http://localhost:4000/"
     },
     {
       "name": "Firefox",

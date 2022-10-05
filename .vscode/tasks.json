@@ -22,6 +22,24 @@
     },
     {
       "type": "npm",
+      "script": "serve:ssr", 
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "typescript",
+        "pattern": "$tsc",
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": {
+            "regexp": "Node Express server listening"
+          },
+          "endsPattern": {
+            "regexp": "(.*?)"
+          }
+        }
+      }
+    },
+    {
+      "type": "npm",
       "script": "test",
       "isBackground": true,
       "problemMatcher": {
