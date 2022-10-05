@@ -3,13 +3,8 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "SpaceshipFluke": {
+    "StarshipFluke": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -72,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "SpaceshipFluke:build:production"
+              "browserTarget": "StarshipFluke:build:production"
             },
             "development": {
-              "browserTarget": "SpaceshipFluke:build:development"
+              "browserTarget": "StarshipFluke:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "SpaceshipFluke:build"
+            "browserTarget": "StarshipFluke:build"
           }
         },
         "test": {

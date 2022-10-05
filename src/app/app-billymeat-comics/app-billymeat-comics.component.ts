@@ -37,6 +37,7 @@ export class AppBillymeatComicsComponent implements OnInit, OnChanges, AfterView
     this.allImages = this.imageService.getImages();
     this.appState = this.applicationState;
     this.title.setTitle("Billy Meat - Web Comics")
+    this.meta.removeTag('name=robots'); 
     this.meta.addTags([
       { name: 'description', content: 'WARNING: This material contains low-brow, toilet humor. It’s best to turn back now. Six out of five surgeon generals agree that reading this is detrimental to your health. There is also a fifty brain cell cover charge.' },
       { name: 'robots', content: 'noindex'} ,
