@@ -54,7 +54,6 @@
         "prerender": {
           "builder": "@nguniversal/builders:prerender",
           "options": {
-            "outputPath": "docs",
             "browserTarget": "StarshipFluke:build:production",
             "serverTarget": "StarshipFluke:server:production",
             "routes": [
