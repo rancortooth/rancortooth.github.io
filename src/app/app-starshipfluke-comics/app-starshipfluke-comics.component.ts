@@ -36,13 +36,6 @@ export class AppStarshipflukeComicsComponent implements OnInit, OnChanges, After
     ) {
     this.allImages = this.imageService.getImages();
     this.appState = this.applicationState;
-    this.title.setTitle("Starship Fluke - Web Comics")
-    this.meta.addTags([
-      { name: 'description', content: 'Come explore web comics featuring the zany crew of the Starship Fluke! Features comics and blogs by wjtorlander full of sci-fi and comedy fun' },
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:site', content: '@wjtorlander' },
-    ]);
-    this.metaService.createCanonicalURL();
   }
 
   ngAfterViewInit(): void {
@@ -61,11 +54,19 @@ export class AppStarshipflukeComicsComponent implements OnInit, OnChanges, After
   }
 
   ngOnInit(): void {
-      this.route.params.subscribe(
-        params => {
-          this.episode = +params['episode'];
-          this.image = this.imageService.getImage(this.episode)
-        }
+    this.title.setTitle("Starship Fluke - Web Comics")
+    this.meta.addTags([
+      { name: 'description', content: 'Come explore web comics featuring the zany crew of the Starship Fluke! Features comics and blogs by wjtorlander full of sci-fi and comedy fun' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:site', content: '@wjtorlander' },
+      { name: 'robots', content: 'noindex'}
+    ]);
+    this.metaService.createCanonicalURL();
+    this.route.params.subscribe(
+      params => {
+        this.episode = +params['episode'];
+        this.image = this.imageService.getImage(this.episode)
+      }
     );
     this.showHideComicNavButtons()
   }

@@ -14,8 +14,10 @@ export class BlogCreativeMindsetComponent implements OnInit {
     private title:Title,
     private metaService: MetaService
   ) { 
+  }
+
+  ngOnInit(): void {
     this.title.setTitle("Starship Fluke Blog - Creative Mindset")
-    this.meta.removeTag('name=robots'); 
     this.meta.addTags([
       { name: 'description', content: 'Blog on how to get into a creative mindset and setup your environment to foster creativity' },
       { name: 'robots', content: 'noindex'} ,
@@ -23,9 +25,6 @@ export class BlogCreativeMindsetComponent implements OnInit {
       { name: 'twitter:site', content: '@wjtorlander' },
     ]);
     this.metaService.createCanonicalURL();
-  }
-
-  ngOnInit(): void {
   }
 
 }

@@ -14,8 +14,10 @@ export class BlogDrawingTabletsComponent implements OnInit {
     private title:Title,
     private metaService: MetaService
   ) {
+   }
+
+  ngOnInit(): void {
     this.title.setTitle("Starship Fluke Blog - Drawing Tablets With or Without Screens")
-    this.meta.removeTag('name=robots'); 
     this.meta.addTags([
       { name: 'description', content: 'Blog on experiences using drawing tablets with or without screens' },
       { name: 'robots', content: 'noindex'} ,
@@ -23,9 +25,6 @@ export class BlogDrawingTabletsComponent implements OnInit {
       { name: 'twitter:site', content: '@wjtorlander' },
     ]);
     this.metaService.createCanonicalURL();
-   }
-
-  ngOnInit(): void {
   }
 
 }

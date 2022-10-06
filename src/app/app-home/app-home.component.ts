@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ApplicationStateService } from '../application-state.service';
 import { Meta, Title } from '@angular/platform-browser';
@@ -20,7 +20,7 @@ export interface Update {
   styleUrls: ['./app-home.component.scss'],
   providers: [ApplicationStateService]
 })
-export class AppHomeComponent {
+export class AppHomeComponent implements OnInit {
 
   emailForm = this.formBuilder.group({
     email: ['', Validators.email]
@@ -55,18 +55,19 @@ export class AppHomeComponent {
     private title:Title,
     private metaService: MetaService
   ) {
+    this.appState = this.applicationState;
+    this.emailImage = "assets/email-signup-1.png"
+    this.emailShown = true
+    this.latestComicImage = "assets/starshipfluke-comics/thumbnail" + this.recentComicNum + ".png"
+  }
+  ngOnInit(): void {
     this.title.setTitle("Starship Fluke - Web Comics and Blogs!")
-    this.meta.removeTag('name=robots'); 
     this.meta.addTags([
       { name: 'description', content: 'Come explore web comics featuring the zany crew of the Starship Fluke! Features comics and blogs by wjtorlander full of sci-fi and comedy fun' },
       { name: 'robots', content: 'index,follow'} ,
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:site', content: '@wjtorlander' },
     ]);
-    this.appState = this.applicationState;
-    this.emailImage = "assets/email-signup-1.png"
-    this.emailShown = true
-    this.latestComicImage = "assets/starshipfluke-comics/thumbnail" + this.recentComicNum + ".png"
     this.metaService.createCanonicalURL();
   }
 

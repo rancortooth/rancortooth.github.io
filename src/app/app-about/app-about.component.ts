@@ -22,18 +22,17 @@ export class AppAboutComponent implements OnInit {
     private title:Title,
     private metaService: MetaService
   ) {
-    this.title.setTitle("Starship Fluke About Site and Author")
-    this.meta.removeTag('name=robots'); 
-    this.meta.addTags([
-      { name: 'description', content: 'About Starship Fluke and contact information' },
-      { name: 'robots', content: 'noindex'} ,
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:site', content: '@wjtorlander' },
-    ]);
-    this.metaService.createCanonicalURL();
    }
 
   ngOnInit(): void {
+    this.title.setTitle("Starship Fluke About Site and Author")
+    this.meta.addTags([
+      { name: 'description', content: 'About Starship Fluke and contact information' },
+      { name: 'robots', content: 'index,nofollow'} ,
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:site', content: '@wjtorlander' },
+    ], true);
+    this.metaService.createCanonicalURL();
   }
 
   onSubmit(): void {

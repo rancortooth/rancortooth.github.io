@@ -36,15 +36,6 @@ export class AppBillymeatComicsComponent implements OnInit, OnChanges, AfterView
     ) {
     this.allImages = this.imageService.getImages();
     this.appState = this.applicationState;
-    this.title.setTitle("Billy Meat - Web Comics")
-    this.meta.removeTag('name=robots'); 
-    this.meta.addTags([
-      { name: 'description', content: 'WARNING: This material contains low-brow, toilet humor. It’s best to turn back now. Six out of five surgeon generals agree that reading this is detrimental to your health. There is also a fifty brain cell cover charge.' },
-      { name: 'robots', content: 'noindex'} ,
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:site', content: '@wjtorlander' },
-    ]);
-    this.metaService.createCanonicalURL();
   }
 
   ngAfterViewInit(): void {
@@ -57,6 +48,15 @@ export class AppBillymeatComicsComponent implements OnInit, OnChanges, AfterView
   }
 
   ngOnInit(): void {
+    this.title.setTitle("Billy Meat - Web Comics")
+    this.meta.removeTag('name=robots'); 
+    this.meta.addTags([
+      { name: 'description', content: 'WARNING: This material contains low-brow, toilet humor. It’s best to turn back now. Six out of five surgeon generals agree that reading this is detrimental to your health. There is also a fifty brain cell cover charge.' },
+      { name: 'robots', content: 'noindex'} ,
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:site', content: '@wjtorlander' },
+    ]);
+    this.metaService.createCanonicalURL();
       this.route.params.subscribe(
         params => {
           this.episode = +params['episode'];
