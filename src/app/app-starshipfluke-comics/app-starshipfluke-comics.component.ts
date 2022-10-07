@@ -59,7 +59,7 @@ export class AppStarshipflukeComicsComponent implements OnInit, OnChanges, After
       { name: 'description', content: 'Come explore web comics featuring the zany crew of the Starship Fluke! Features comics and blogs by wjtorlander full of sci-fi and comedy fun' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:site', content: '@wjtorlander' },
-      { name: 'robots', content: 'noindex'}
+      { name: 'robots', content: 'index'}
     ]);
     this.metaService.createCanonicalURL();
     this.route.params.subscribe(
