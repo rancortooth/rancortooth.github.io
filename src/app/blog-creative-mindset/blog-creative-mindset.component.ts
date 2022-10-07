@@ -20,7 +20,7 @@ export class BlogCreativeMindsetComponent implements OnInit {
     this.title.setTitle("Starship Fluke Blog - Creative Mindset")
     this.meta.addTags([
       { name: 'description', content: 'Blog on how to get into a creative mindset and setup your environment to foster creativity' },
-      { name: 'robots', content: 'noindex'} ,
+      { name: 'robots', content: 'index'} ,
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:site', content: '@wjtorlander' },
     ]);
