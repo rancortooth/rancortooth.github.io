@@ -32,8 +32,8 @@ export class AppHomeComponent implements OnInit {
   //
   // **** UPDATE INFORMATION ****
   //
-  recentComicNum: string = "21"
-  recentComicTitle: string = "Return of the Cliché"
+  recentComicNum: string = "23"
+  recentComicTitle: string = "The Manatee Ball"
   updates: Update[] = [
     {"date": "9/28/2022", "message": "Got the Billy Meat comics uploaded", "link": "/billymeat/1", "fragment":"headertop", "linkMessage": "Billy Meat", "image": "assets/billymeat-comics/thumbnail02.png"},
     {"date": "9/25/2022", "message": "This website is now in alpha testing!", "link": "/about", "fragment":"headertop", "linkMessage": "About Page", "image": "assets/insignia.jpg"},

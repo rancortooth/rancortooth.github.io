@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'    
 @Injectable()    
 export class SFImageService {
-    NUM_COMICS=22;
+    NUM_COMICS=23;
     allImages: any[] = [];
     imageDetails: any[] = [];
 
