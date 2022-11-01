@@ -53,8 +53,6 @@ export class AppBillymeatComicsComponent implements OnInit, OnChanges, AfterView
     this.meta.addTags([
       { name: 'description', content: 'WARNING: This material contains low-brow, toilet humor. It’s best to turn back now. Six out of five surgeon generals agree that reading this is detrimental to your health. There is also a fifty brain cell cover charge.' },
       { name: 'robots', content: 'index'} ,
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:site', content: '@wjtorlander' },
     ]);
     this.metaService.createCanonicalURL();
       this.route.params.subscribe(

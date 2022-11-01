@@ -65,8 +65,6 @@ export class AppHomeComponent implements OnInit {
     this.meta.addTags([
       { name: 'description', content: 'Come explore web comics featuring the zany crew of the Starship Fluke! Features comics and blogs by wjtorlander full of sci-fi and comedy fun' },
       { name: 'robots', content: 'index,follow'} ,
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:site', content: '@wjtorlander' },
     ]);
     this.metaService.createCanonicalURL();
   }

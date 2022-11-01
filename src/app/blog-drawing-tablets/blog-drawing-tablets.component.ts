@@ -21,8 +21,6 @@ export class BlogDrawingTabletsComponent implements OnInit {
     this.meta.addTags([
       { name: 'description', content: 'Blog on experiences using drawing tablets with or without screens' },
       { name: 'robots', content: 'index'} ,
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:site', content: '@wjtorlander' },
     ]);
     this.metaService.createCanonicalURL();
   }
