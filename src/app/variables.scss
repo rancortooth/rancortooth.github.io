@@ -1,11 +1,11 @@
-/* variables.scss */
-@import "~@angular/material/theming";
+// /* variables.scss */
+// @import "~@angular/material/theming";
 
-$primaryPalette: mat-palette($mat-deep-purple);
-$accentPalette:  mat-palette($mat-amber, A200, A100, A400);
+// $primaryPalette: mat-palette($mat-deep-purple);
+// $accentPalette:  mat-palette($mat-amber, A200, A100, A400);
 
-// the default warn palette is red, so use that if the theme doesn't define one
-$warnPalette:    mat-palette($mat-red);
+// // the default warn palette is red, so use that if the theme doesn't define one
+// $warnPalette:    mat-palette($mat-red);
 
-// re-define the indigo-pink theme
-$defaultTheme: mat-dark-theme($primaryPalette, $accentPalette, $warnPalette);
+// // re-define the indigo-pink theme
+// $defaultTheme: mat-dark-theme($primaryPalette, $accentPalette, $warnPalette);

@@ -1,70 +1,33 @@
 
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
-// Plus imports for other components in your app.
-
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
 @include mat.core();
 
-// @font-face {
-//   font-family: "recharge";
-//   src: local("recharge"), url(./assets/fonts/recharge.ttf) format("truetype");
-// }
-
-@font-face {
-  font-family: "xolonium-regular";
-  src: local("xolonium-regular"), url(./assets/fonts/Xolonium-Regular.otf) format("opentype");
-}
-
-* {
-  font-family: 'xolonium-regular';
-}
-
-
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-//$StarshipFluke-primary: mat.define-palette(mat.$indigo-palette);
 $StarshipFluke-primary: mat.define-palette(mat.$deep-purple-palette);
 $StarshipFluke-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
 $StarshipFluke-warn: mat.define-palette(mat.$red-palette);
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$StarshipFluke-theme: mat.define-light-theme((
-  color: (
-    primary: $StarshipFluke-primary,
-    accent: $StarshipFluke-accent,
-    warn: $StarshipFluke-warn,
-  )
-));
-
-// Define a dark theme
 $dark-primary: mat.define-palette(mat.$pink-palette);
 $dark-accent: mat.define-palette(mat.$blue-grey-palette);
 $dark-theme: mat.define-dark-theme((
  color: (
    primary: $dark-primary,
    accent: $dark-accent,
-   background: $dark-accent,
+   background: $dark-accent
  )
 ));
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-//@include mat.all-component-themes($StarshipFluke-theme);
 @include mat.core-theme($dark-theme);
 @include mat.button-theme($dark-theme);
 @include mat.table-theme($dark-theme);
 
 @import '~@angular/material/theming';
-@import 'app/variables.scss';
+
+$primaryPalette: mat-palette($mat-deep-purple);
+$accentPalette:  mat-palette($mat-amber, A200, A100, A400);
+$warnPalette:    mat-palette($mat-red);
+
+$defaultTheme: mat-dark-theme($primaryPalette, $accentPalette, $warnPalette);
+
 @include angular-material-theme($defaultTheme);
 
 .primary-color-bg {
@@ -73,6 +36,19 @@ $dark-theme: mat.define-dark-theme((
 
 .accent-color {
     color: mat-color($accentPalette);
+}
+
+.mat-app-background {
+  background-color: #000000;
+}
+
+@font-face {
+  font-family: "xolonium-regular";
+  src: local("xolonium-regular"), url(./assets/fonts/Xolonium-Regular.otf) format("opentype");
+}
+
+* {
+  font-family: 'xolonium-regular';
 }
 
 * { 
