@@ -47,6 +47,17 @@ h1 {
 // HAMBURGER MENU CSS BELOW ******************
 //
 
+.inline {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.hamburger-menu {
+  display: inline-block;
+  vertical-align: top;
+  width: 70px;
+}
+
 #menu__toggle {
   opacity: 0;
 }
@@ -65,8 +76,8 @@ h1 {
   left: 0 !important;
 }
 .menu__btn {
-  position: fixed;
-  top: 20px;
+  position: relative;
+  top: 0px;
   left: 20px;
   width: 26px;
   height: 26px;
@@ -78,7 +89,7 @@ h1 {
 .menu__btn > span::after {
   display: block;
   position: absolute;
-  width: 100%;
+  width: 30px;
   height: 2px;
   background-color: #616161;
   transition-duration: .25s;
@@ -92,14 +103,13 @@ h1 {
   top: 8px;
 }
 .menu__box {
-  display: block;
-  position: fixed;
-  top: 0;
-  left: -100%;
+  position: relative;
+  top: -20px;
+  left: -300px;
   width: 300px;
   height: 100%;
   margin: 0;
-  padding: 80px 0;
+  padding: 60px 0;
   list-style: none;
   background-color: #ECEFF1;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
