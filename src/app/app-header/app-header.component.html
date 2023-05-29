@@ -12,14 +12,14 @@
 
               <!-- Comics sub-menu -->
               <button mat-button [matMenuTriggerFor]="comicsmenu">COMICS</button>  
-              <mat-menu #comicsmenu="matMenu">
+              <mat-menu #comicsmenu="matMenu" class="on-top-of-all">
                 <button class="nav-button" mat-fab color="background" style="width: 140px; height: 50px" class="nav-button" (click)="onClickSubMenu('/starshipfluke/01')">Starship Fluke</button><br>
                 <button class="nav-button" mat-fab color="background" style="width: 140px; height: 50px" class="nav-button" (click)="onClickSubMenu('/billymeat/01')">Billy Meat</button>
               </mat-menu>
 
               <!-- Blog sub-menu -->
               <button mat-button [matMenuTriggerFor]="blogmenu">BLOG</button>  
-              <mat-menu #blogmenu="matMenu">
+              <mat-menu #blogmenu="matMenu" class="on-top-of-all">
                 <button class="nav-button" mat-fab color="background" style="width: 240px; height: 50px" class="nav-button" (click)="onClickSubMenu('/blog/drawingtablets')">Drawing Tablet Screen or Not</button><br>
                 <button class="nav-button" mat-fab color="background" style="width: 240px; height: 50px" class="nav-button" (click)="onClickSubMenu('/blog/creativemindset')">Your Creative Mindset</button>
               </mat-menu>
