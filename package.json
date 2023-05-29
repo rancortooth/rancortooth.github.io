@@ -29,14 +29,14 @@
     "@nguniversal/express-engine": "14.2.0",
     "angular-material": "1.1.24",
     "angular-material-data-table": "0.10.10",
-    "express": "4.15.2",
+    "express": "^4.18.2",
     "ngx-google-analytics": "14.0.1",
     "rxjs": "7.5.7",
     "tslib": "2.4.0",
     "zone.js": "0.11.8"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "14.2.0",
+    "@angular-devkit/build-angular": "^14.2.11",
     "@angular-eslint/builder": "14.0.0-alpha.4",
     "@angular-eslint/eslint-plugin": "14.0.0-alpha.4",
     "@angular-eslint/eslint-plugin-template": "14.0.0-alpha.4",
