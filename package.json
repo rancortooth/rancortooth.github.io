@@ -4,13 +4,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "node ./scripts/generatePageIndex.js && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "dev:ssr": "ng run StarshipFluke:serve-ssr",
     "serve:ssr": "node dist/StarshipFluke/server/main.js",
     "build:ssr": "ng build && ng run StarshipFluke:server",
-    "prerender": "ng run StarshipFluke:prerender",
+    "prerender": "node ./scripts/generatePageIndex.js && ng run StarshipFluke:prerender",
     "lint": "ng lint"
   },
   "private": true,
