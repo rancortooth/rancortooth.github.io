@@ -1,30 +1,24 @@
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css'>
 
-<!-- <div style="height: 120px; background-color: #ff0000">placeholder</div> -->
-
 <div class="mat-typography">
 
   <div class="topbar" (window:resize)="onResize($event)">
       <div *ngIf="!appState.getIsMobileResolution()" class="header-column-lg">
         <div class="primary-color-bg" style="display: inline-block; width: 100%">
           <nav>
-              <button id="headertop" style="width: 100px;" [routerLink]="'/'" class="nav-button image-button" mat-fab color="primary" aria-label="Home">.</button>
+              <!-- Home/Blogs button -->
+              <button mat-button style="width: 80px; margin:10px; margin-top:20px;" [routerLink]="'/'" color="background" >BLOGS</button>
 
               <!-- Comics sub-menu -->
-              <button mat-button [matMenuTriggerFor]="comicsmenu">COMICS</button>  
+              <button mat-button style="width: 80px; margin:10px; margin-top:20px;" [matMenuTriggerFor]="comicsmenu">COMICS</button>  
               <mat-menu #comicsmenu="matMenu" class="on-top-of-all">
-                <button class="nav-button" mat-fab color="background" style="width: 140px; height: 50px" class="nav-button" (click)="onClickSubMenu('/starshipfluke/01')">Starship Fluke</button><br>
-                <button class="nav-button" mat-fab color="background" style="width: 140px; height: 50px" class="nav-button" (click)="onClickSubMenu('/billymeat/01')">Billy Meat</button>
+                <button mat-button color="primary" (click)="onClickSubMenu('/starshipfluke/01')">Starship Fluke</button><br>
+                <button mat-button color="primary"  (click)="onClickSubMenu('/billymeat/01')">Billy Meat</button>
               </mat-menu>
 
-              <!-- Blog sub-menu -->
-              <button mat-button [matMenuTriggerFor]="blogmenu">BLOG</button>  
-              <mat-menu #blogmenu="matMenu" class="on-top-of-all">
-                <button class="nav-button" mat-fab color="background" style="width: 240px; height: 50px" class="nav-button" (click)="onClickSubMenu('/blog/drawingtablets')">Drawing Tablet Screen or Not</button><br>
-                <button class="nav-button" mat-fab color="background" style="width: 240px; height: 50px" class="nav-button" (click)="onClickSubMenu('/blog/creativemindset')">Your Creative Mindset</button>
-              </mat-menu>
+              <!-- About button -->
+              <button mat-button style="width: 80px; margin:10px; margin-top:20px;" [routerLink]="'/about'" color="background" aria-label="About">ABOUT</button>
 
-              <button style="width: 80px" [routerLink]="'/about'" class="nav-button" mat-fab color="primary" aria-label="About">ABOUT</button>
             <!-- social media icons -->
             <div class="wrapper">
               <a class="icon facebook fab fa-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fstarshipfluke.com{{ router.url }}" rel="noopener" target="_blank" rel="noopener"></a>
@@ -37,18 +31,15 @@
             <!-- social media icons -->
             <div class="wrapper">
               <div class="hamburger-menu">
-                <input #menutoggle id="menu__toggle" type="checkbox" [(ngModel)]="menuToggle" />
+                <input #menutoggle id="menu__toggle" type="checkbox" [(ngModel)]="menuToggle"/>
                 <label class="menu__btn" for="menu__toggle">
                   <span></span>
                 </label>
                 <nav class="menu__box">
-                  <a (click)="closeMenu()" class="nav-image" routerLink="/"><img alt="starship fluke home page" height="50px" src="assets/insignia.jpg"></a>
+                  <a (click)="closeMenu()" class="menu__item" routerLink="/">BLOGS</a>
                   <a (click)="closeMenu()" class="menu__item" routerLink="/starshipfluke/1">STARSHIP FLUKE</a>
                   <a (click)="closeMenu()" class="menu__item" routerLink="/billymeat/1">BILLY MEAT</a>
                   <br/>
-                  <label style="color:grey" class="menu__item">Blogs:</label>
-                  <a (click)="closeMenu()" class="menu__item" routerLink="/blog/drawingtablets">Drawing Tablet Screen or Not</a>
-                  <a (click)="closeMenu()" class="menu__item" routerLink="/blog/creativemindset">Your Creative Mindset</a>
                   <br/><br/>
                   <a (click)="closeMenu()" class="menu__item" routerLink="/about">ABOUT</a> 
                 </nav>

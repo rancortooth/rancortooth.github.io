@@ -1,9 +1,12 @@
 <div class="mat-typography app-frame mat-app-background" style="height:100%">
 
     <div class="center-block">
-        <label class="accent-color bigger-font">Like the website? Hate it? Suggestions?</label><p></p>
-        <label style="color: white">EMAIL: wjtorlander@gmail.com</label><br/>
-        <label style="color: #6397ff">FACEBOOK: <a class="accent-color" href="https://www.facebook.com/people/WJ-Torlander/100075752286581/" target="_blank">wjtorlander</a></label><br/>
+        <label class="accent-color bigger-font">Like the website? Hate it? Suggestions?</label>
+        <p></p>
+        <label style="color: white">EMAIL: wjtorlander@gmail.com</label><br />
+        <label style="color: #6397ff">FACEBOOK: <a class="accent-color"
+                href="https://www.facebook.com/people/WJ-Torlander/100075752286581/"
+                target="_blank">wjtorlander</a></label><br />
     </div>
     <p></p>
     <div class="center-block">
@@ -14,10 +17,11 @@
     <div class="center-block">
         <label *ngIf="messageShown" class="accent-color bigger-font">Send me a message!</label>
         <form *ngIf="messageShown" class="email-input" [formGroup]="messageForm" (ngSubmit)="onSubmit()">
-            <textarea style="height: 80px; width: 65%; max-width: 400px" formControlName="message"></textarea><br/>
+            <textarea style="height: 80px; width: 65%; max-width: 400px" formControlName="message"></textarea><br />
             <button class="message-button" type="submit">Send</button>
         </form>
-        <label *ngIf="!messageShown" class="accent-color">Thank you! Our fully staffed 24/7 call-center will get back to you ASAP. Just kidding. I'll try my best.</label>
+        <label *ngIf="!messageShown" class="accent-color">Thank you! Our fully staffed 24/7 call-center will get back to
+            you ASAP. Just kidding. I'll try my best.</label>
     </div>
 
     <div class="center-block">
@@ -26,6 +30,6 @@
 
     <!-- copyright notice -->
     <h1 style="visibility: hidden;">About Starship Fluke</h1>
-    <div class="copyright">Copyright &copy; 2022 WJ Torlander, Art & Website, All Rights Reserved</div>
+    <div class="copyright">Copyright &copy; 2023 WJ Torlander, Art & Website, All Rights Reserved</div>
 
 </div>

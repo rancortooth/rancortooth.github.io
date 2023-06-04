@@ -5,23 +5,12 @@
 }
 
 .home-parent {
-    display: flex;
-    justify-content: flex-end;
-    flex-direction: column;
+    margin: 20px;
     align-items: center;
 }
 
-.home-row {
-    display: flex;
-}
-  
 .home-column-sm {
     flex: 20%;
-    // min-width: 200px;
-}
-
-.home-column-lg {
-    flex: 80%;
 }
 
 .home-copyright {
@@ -35,10 +24,17 @@
     border: 1px solid rgb(69, 69, 69);
 }
 
-.title-image {
-    width: 90%;
+.center {
     margin: auto;
     display: block;
+    width: 90%;
+}
+
+.center-contents {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .email-image {

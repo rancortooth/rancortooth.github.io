@@ -3,6 +3,9 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "dependsOn": [
+        "generatePageIndex"
+      ],
       "type": "npm",
       "script": "start",
       "isBackground": true,
@@ -22,7 +25,7 @@
     },
     {
       "type": "npm",
-      "script": "serve:ssr", 
+      "script": "serve:ssr",
       "isBackground": true,
       "problemMatcher": {
         "owner": "typescript",
@@ -55,6 +58,14 @@
           }
         }
       }
+    },
+    {
+      "label": "generatePageIndex",
+      "command": "node",
+      "args": [
+        "./scripts/generatePageIndex.js"
+      ],
+      "type": "shell"
     }
   ]
 }

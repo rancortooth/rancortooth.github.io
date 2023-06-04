@@ -14,138 +14,54 @@
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
-        
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "docs",
-            "main": "server.ts",
-            "tsConfig": "tsconfig.server.json",
-            "deleteOutputPath": false
-          },
-          "configurations": {
-            "production": {
-              "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "sourceMap": false,
-              "optimization": true
-            }
-          }
-        },
-        "serve-ssr": {
-          "builder": "@nguniversal/builders:ssr-dev-server",
-          "options": {
-            "browserTarget": "StarshipFluke:build",
-            "serverTarget": "StarshipFluke:server",
-            "deleteOutputPath": false
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "StarshipFluke:build:production",
-              "serverTarget": "StarshipFluke:server:production"
-            }
-          }
-        },
-        "prerender": {
-          "builder": "@nguniversal/builders:prerender",
-          "options": {
-            "browserTarget": "StarshipFluke:build:production",
-            "serverTarget": "StarshipFluke:server:production",
-            "routes": [
-              "/",
-              "/about",
-              "/blog/drawingtablets",
-              "/blog/creativemindset",
-              "/starshipfluke/01",
-              "/starshipfluke/02",
-              "/starshipfluke/03",
-              "/starshipfluke/04",
-              "/starshipfluke/05",
-              "/starshipfluke/06",
-              "/starshipfluke/07",
-              "/starshipfluke/08",
-              "/starshipfluke/09",
-              "/starshipfluke/10",
-              "/starshipfluke/11",
-              "/starshipfluke/12",
-              "/starshipfluke/13",
-              "/starshipfluke/14",
-              "/starshipfluke/15",
-              "/starshipfluke/16",
-              "/starshipfluke/17",
-              "/starshipfluke/18",
-              "/starshipfluke/19",
-              "/starshipfluke/20",
-              "/starshipfluke/21",
-              "/starshipfluke/22",
-              "/starshipfluke/23",
-              "/starshipfluke/24",
-              "/billymeat/01",
-              "/billymeat/02",
-              "/billymeat/03",
-              "/billymeat/04",
-              "/billymeat/05",
-              "/billymeat/06",
-              "/billymeat/07",
-              "/billymeat/08",
-              "/billymeat/09",
-              "/billymeat/10",
-              "/billymeat/11",
-              "/billymeat/12"
-            ]
-          },
-          "configurations": {
-            "production": {}
-          }
-        },
-
-
-
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "docs",
+            "outputPath": "dist/StarshipFluke/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/_assets",
               "src/CNAME",
               "src/sitemap.xml",
               "src/ads.txt"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "node_modules/prismjs/themes/prism-okaidia.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/marked/marked.min.js",
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/components/prism-csharp.min.js",
+              "node_modules/prismjs/components/prism-css.min.js",
+              "node_modules/prismjs/components/prism-typescript.min.js",
+              "node_modules/prismjs/components/prism-bash.min.js",
+              "node_modules/prismjs/components/prism-json.min.js",
+              "node_modules/prismjs/components/prism-php.min.js",
+              "node_modules/prismjs/components/prism-markup-templating.min.js"
+            ]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "4mb"
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "100kb",
-                  "maximumError": "200kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
               ],
               "outputHashing": "all"
@@ -182,14 +98,17 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/_assets"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
@@ -197,11 +116,62 @@
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/StarshipFluke/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media"
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "StarshipFluke:build:development",
+              "serverTarget": "StarshipFluke:server:development"
+            },
+            "production": {
+              "browserTarget": "StarshipFluke:build:production",
+              "serverTarget": "StarshipFluke:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "StarshipFluke:build:production",
+              "serverTarget": "StarshipFluke:server:production"
+            },
+            "development": {
+              "browserTarget": "StarshipFluke:build:development",
+              "serverTarget": "StarshipFluke:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
-  },
-  "cli": {
-    "analytics": false
   }
 }

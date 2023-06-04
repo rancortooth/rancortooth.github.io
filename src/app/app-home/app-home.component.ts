@@ -4,6 +4,14 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ApplicationStateService } from '../application-state.service';
 import { Meta, Title } from '@angular/platform-browser';
 import { MetaService } from '../meta-service.service';
+import { Observable } from 'rxjs/internal/Observable';
+import Post from '../models/post';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Subject } from 'rxjs/internal/Subject';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
+import { PostService } from '../services/post.service';
+import { tap } from 'rxjs/internal/operators/tap';
+import { map } from 'rxjs/internal/operators/map';
 
 export interface Update {
   date: string;
@@ -34,11 +42,6 @@ export class AppHomeComponent implements OnInit {
   //
   recentComicNum: string = "24"
   recentComicTitle: string = "The Final Frontier"
-  updates: Update[] = [
-    {"date": "9/28/2022", "message": "Got the Billy Meat comics uploaded", "link": "/billymeat/1", "fragment":"headertop", "linkMessage": "Billy Meat", "image": "assets/billymeat-comics/thumbnail02.png"},
-    {"date": "9/25/2022", "message": "This website is now in alpha testing!", "link": "/about", "fragment":"headertop", "linkMessage": "About Page", "image": "assets/insignia.jpg"},
-    {"date": "9/24/2022", "message": "Getting excited to launch soon! Boo-yah!", "link": "", "fragment":"", "linkMessage": "", "image": "assets/kuku_icon.png"},
-  ]
   //
   // *************************
   //
@@ -46,14 +49,23 @@ export class AppHomeComponent implements OnInit {
   emailImage: any;
   emailShown: boolean = true;
   latestComicImage: string= "";
-  
+
+  posts$: Observable<Post[]> | undefined;
+  hasMore$ = new BehaviorSubject(true);
+  numPostsToLoad$ = new BehaviorSubject(5);
+  numPostsDisplayed: number | undefined;
+  totalPosts: number | undefined;
+  onDestroy$ = new Subject();
+
+
   constructor (
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private applicationState: ApplicationStateService,
     private meta: Meta,
     private title:Title,
-    private metaService: MetaService
+    private metaService: MetaService,
+    private postService: PostService
   ) {
     this.appState = this.applicationState;
     this.emailImage = "assets/email-signup-1.png"
@@ -67,6 +79,24 @@ export class AppHomeComponent implements OnInit {
       { name: 'robots', content: 'index,follow'} ,
     ]);
     this.metaService.createCanonicalURL();
+
+    this.numPostsToLoad$
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((numPostsToLoad) => {
+        this.posts$ = this.postService.getLatestPosts().pipe(
+          tap((posts) => {
+            this.totalPosts = posts.length;
+            if (numPostsToLoad < this.totalPosts) {
+              this.hasMore$.next(true);
+            } else {
+              this.hasMore$.next(false);
+            }
+          }),
+          map((posts) => posts.slice(0, numPostsToLoad)),
+          tap((_) => (this.numPostsDisplayed = numPostsToLoad))
+        );
+      });
+
   }
 
   get email(){
@@ -85,6 +115,11 @@ export class AppHomeComponent implements OnInit {
 
   onResize(event: any) {
     this.appState.checkSize()
+  }
+
+  loadMore() {
+    if (this.numPostsDisplayed)
+      this.numPostsToLoad$.next(this.numPostsDisplayed + 5);
   }
 
 }

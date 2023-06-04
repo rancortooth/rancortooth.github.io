@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, SecurityContext } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,43 +15,52 @@ import { MatButtonModule } from '@angular/material/button'
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table'
 import { MatMenuModule } from '@angular/material/menu';
-import { BlogDrawingTabletsComponent } from './blog-drawing-tablets/blog-drawing-tablets.component';
-import { BlogCreativeMindsetComponent } from './blog-creative-mindset/blog-creative-mindset.component';
 import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
 import { BMImageService } from './bmimage.service';
+import { AppPostComponent } from './app-post/app-post.component'
+import { MarkdownModule, MarkdownService, MarkedOptions } from 'ngx-markdown';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { PostBoxComponent } from './components/post-box/post-box.component';
 
 @NgModule({
-  imports: [
-    AppRoutingModule,
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    BrowserAnimationsModule,
-    FormsModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    MatIconModule,
-    MatButtonModule,
-    MatTableModule,
-    MatMenuModule,
-    NgxGoogleAnalyticsModule.forRoot('G-F6GT7CXJ8Q')
-  ],
-  declarations: [
-    AppComponent,
-    AppHomeComponent,
-    AppHeaderComponent,
-    AppAboutComponent,
-    AppStarshipflukeComicsComponent,
-    AppBillymeatComicsComponent,
-    BlogDrawingTabletsComponent,
-    BlogCreativeMindsetComponent,
-  ],
-  providers: [
-    SFImageService,
-    BMImageService,
-    Title
-  ],
-  bootstrap: [
-    AppComponent
-  ]
+    declarations: [
+        AppComponent,
+        AppHomeComponent,
+        AppHeaderComponent,
+        AppAboutComponent,
+        AppStarshipflukeComicsComponent,
+        AppBillymeatComicsComponent,
+        AppPostComponent,
+        PostBoxComponent,
+    ],
+    providers: [
+        SFImageService,
+        BMImageService,
+        Title,
+        MarkdownService
+    ],
+    bootstrap: [
+        AppComponent
+    ],
+    imports: [
+        AppRoutingModule,
+        CommonModule,
+        BrowserModule.withServerTransition({ appId: 'serverApp' }),
+        BrowserAnimationsModule,
+        FormsModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        MatButtonModule,
+        MatTableModule,
+        MatMenuModule,
+        NgxGoogleAnalyticsModule.forRoot('G-F6GT7CXJ8Q'),
+        MarkdownModule.forRoot({
+            sanitize: SecurityContext.NONE
+        }),
+        RouterModule
+    ]
 })
 export class AppModule {
 }

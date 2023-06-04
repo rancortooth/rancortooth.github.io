@@ -1,41 +1,32 @@
-
 @use '@angular/material' as mat;
+
 @include mat.core();
 
-$StarshipFluke-primary: mat.define-palette(mat.$deep-purple-palette);
-$StarshipFluke-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
-$StarshipFluke-warn: mat.define-palette(mat.$red-palette);
+// Define a dark theme
+$dark-theme: mat.define-dark-theme((color: (primary: mat.define-palette(mat.$pink-palette),
+        accent: mat.define-palette(mat.$blue-grey-palette),
+      ),
+      // Only include `typography` and `density` in the default dark theme.
+      typography: mat.define-typography-config(),
+      density: 0,
+    ));
 
-$dark-primary: mat.define-palette(mat.$pink-palette);
-$dark-accent: mat.define-palette(mat.$blue-grey-palette);
-$dark-theme: mat.define-dark-theme((
- color: (
-   primary: $dark-primary,
-   accent: $dark-accent,
-   background: $dark-accent
- )
-));
+// Define a light theme
+$light-theme: mat.define-light-theme((color: (primary: mat.define-palette(mat.$indigo-palette),
+        accent: mat.define-palette(mat.$pink-palette),
+      ),
+    ));
 
+// Apply the dark theme by default
 @include mat.core-theme($dark-theme);
 @include mat.button-theme($dark-theme);
-@include mat.table-theme($dark-theme);
 
-@import '~@angular/material/theming';
-
-$primaryPalette: mat-palette($mat-deep-purple);
-$accentPalette:  mat-palette($mat-amber, A200, A100, A400);
-$warnPalette:    mat-palette($mat-red);
-
-$defaultTheme: mat-dark-theme($primaryPalette, $accentPalette, $warnPalette);
-
-@include angular-material-theme($defaultTheme);
-
-.primary-color-bg {
-    background-color: mat-color($primaryPalette);
-}
-
-.accent-color {
-    color: mat-color($accentPalette);
+// Apply the light theme only when the user prefers light themes.
+@media (prefers-color-scheme: light) {
+  // Use the `-color` mixins to only apply color styles without reapplying the same
+  // typography and density styles.
+  @include mat.core-color($light-theme);
+  @include mat.button-color($light-theme);
 }
 
 .mat-app-background {
@@ -51,8 +42,42 @@ $defaultTheme: mat-dark-theme($primaryPalette, $accentPalette, $warnPalette);
   font-family: 'xolonium-regular';
 }
 
-* { 
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.post-card-content {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+
+.post-card-panel {
+  background-color: rgb(53, 53, 53);
+  text-align: center;
+  width: 250px;
+  height: 350px;
+}
+
+.post-card-image-large {
+  display: block;
+  // margin-left: auto;
+  // margin-right: auto;
+  width: 70%;
+  padding: 10px;
+  max-width: 300px;
+  height: auto;
+}
+
+.post-card-image-small {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  padding: 10px;
+  max-width: 300px;
+  height: auto;
 }

@@ -1,0 +1,10 @@
+<div class="post-card-content" *ngIf="post$ | async; let post">
+    <div class="flex justify-between">
+        <div>{{post.date | date: 'longDate'}}</div>
+    </div>
+    <h1>
+        <div>{{ post.title }}</div>
+    </h1>
+    <img *ngIf="postImgUrl" [src]="this.postImgUrl" class="post-card-image-large" alt="{{ post.title }}" />
+    <markdown class="" [src]="this.postUrl"></markdown>
+</div>

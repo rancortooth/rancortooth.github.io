@@ -21,34 +21,38 @@
                         <!-- AD SPACE -->
                     </div>
                     <h1 style="visibility: hidden;">Billy Meat Episode {{ episode }}</h1>
-                    <div class="copyright">Copyright &copy; 2022 WJ Torlander, Art & Website, All Rights Reserved</div>
+                    <div class="copyright">Copyright &copy; 2023 WJ Torlander, Art & Website, All Rights Reserved</div>
                 </div>
 
                 <!-- Next/Prev comic buttons -->
                 <div class="button-prev">
-                    <button style="width: 55px" class="button-opacity" *ngIf="this.prevComicButtonHidden" (click)="onPrevComic()" mat-fab color="primary" aria-label="Next Comic">
+                    <button style="width: 55px" class="button-opacity" *ngIf="this.prevComicButtonHidden"
+                        (click)="onPrevComic()" mat-fab color="primary" aria-label="Next Comic">
                         <mat-icon>arrow_back_ios</mat-icon>
                     </button>
                 </div>
                 <div class="button-next">
-                    <button style="width: 55px" class="button-opacity" *ngIf="this.nextComicButtonHidden" (click)="onNextComic()" mat-fab color="primary" aria-label="Previous Comic">
+                    <button style="width: 55px" class="button-opacity" *ngIf="this.nextComicButtonHidden"
+                        (click)="onNextComic()" mat-fab color="primary" aria-label="Previous Comic">
                         <mat-icon>arrow_forward_ios</mat-icon>
                     </button>
                 </div>
 
                 <!-- horizontal scrolling menu -->
-                <div class="footer">    
+                <div class="footer">
                     <div #scrollcomicbar class="scrolling-wrapper">
-                        <ul style="display: block; margin-left:auto; margin-right: auto;">    
+                        <ul style="display: block; margin-left:auto; margin-right: auto;">
                             <li *ngFor="let img of allImages">
-                            <a (click)="onSelectComic(img.id)" [routerLink]="['/billymeat', img.id]">
-                                <img alt="Episode {{ episode }}" [ngStyle]="{ 'filter' : (img.id == episode) ? 'grayscale(0%) contrast(100%)' : 'grayscale(100%) contrast(25%)' }" src="{{ img.thumbnail }}" class="thumbnail">
-                            </a>    
-                            </li>    
-                        </ul>    
+                                <a (click)="onSelectComic(img.id)" [routerLink]="['/billymeat', img.id]">
+                                    <img alt="Episode {{ episode }}"
+                                        [ngStyle]="{ 'filter' : (img.id == episode) ? 'grayscale(0%) contrast(100%)' : 'grayscale(100%) contrast(25%)' }"
+                                        src="{{ img.thumbnail }}" class="thumbnail">
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
 

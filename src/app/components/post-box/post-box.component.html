@@ -1,0 +1,15 @@
+<a [routerLink]="postLink" style="color:white;text-decoration:none;">
+  <div class="post-card-panel" @loadingAnimation *ngIf="post">
+    <div>
+      <img class="post-card-image-small" [attr.src]="postImage" alt="{{ post.title }}" />
+    </div>
+    <div>
+      <div>
+        <div>
+          {{ post.date }}
+        </div>
+        <h2>{{ post.title }}</h2>
+      </div>
+    </div>
+  </div>
+</a>
