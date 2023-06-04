@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { PostService } from '../services/post.service';
 import { delay, switchMap, tap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-post',
@@ -11,11 +10,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppPostComponent {
   #postService = inject(PostService);
-  // postUrl: string | undefined;
+  postUrl: string | undefined;
   postImgUrl: string | undefined;
-  md: string | undefined;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    // private location: Location
+  ) { }
 
   // tap and delay are a hack until this is resolved: https://github.com/angular/angular/issues/47813
   post$ = inject(ActivatedRoute).params.pipe(
@@ -23,10 +23,11 @@ export class AppPostComponent {
     switchMap(({ title }) => this.#postService.getPostDetails(title)),
     delay(0),
     tap(({ link, image, title }) => {
-      this.http.get('/_assets/posts/' + link + '.md', { responseType: 'text' }).subscribe(data => {
-        this.md = data;
-      });
+      this.postUrl = `/_assets/posts/${link}.md`;
       this.postImgUrl = `/assets/images/${image}`;
+      // this.#pageHeadService.setTitle(title);
+      // this.#pageHeadService.setOpenGraphTags(title, image, `/blog/post/${link}`);
+      // this.#pageHeadService.setTwitterCardData(title, image);
     }
     ),
   );
