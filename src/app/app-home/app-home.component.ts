@@ -32,7 +32,7 @@ export class AppHomeComponent implements OnInit {
 
   emailForm = this.formBuilder.group({
     email: ['', Validators.email]
- }); 
+  });
 
   appState: ApplicationStateService;
   displayedColumns: string[] = ['Message', 'Image'];
@@ -48,7 +48,7 @@ export class AppHomeComponent implements OnInit {
 
   emailImage: any;
   emailShown: boolean = true;
-  latestComicImage: string= "";
+  latestComicImage: string = "";
 
   posts$: Observable<Post[]> | undefined;
   hasMore$ = new BehaviorSubject(true);
@@ -58,12 +58,12 @@ export class AppHomeComponent implements OnInit {
   onDestroy$ = new Subject();
 
 
-  constructor (
+  constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private applicationState: ApplicationStateService,
     private meta: Meta,
-    private title:Title,
+    private title: Title,
     private metaService: MetaService,
     private postService: PostService
   ) {
@@ -76,7 +76,7 @@ export class AppHomeComponent implements OnInit {
     this.title.setTitle("Starship Fluke - Web Comics and Blogs!")
     this.meta.addTags([
       { name: 'description', content: 'Come explore web comics featuring the zany crew of the Starship Fluke! Features comics and blogs by wjtorlander full of sci-fi and comedy fun' },
-      { name: 'robots', content: 'index,follow'} ,
+      { name: 'robots', content: 'index,follow' },
     ]);
     this.metaService.createCanonicalURL();
 
@@ -99,27 +99,22 @@ export class AppHomeComponent implements OnInit {
 
   }
 
-  get email(){
+  get email() {
     return this.emailForm.get('email')
   }
 
   onSubmit(): void {
     console.warn('YOUR EMAIL', this.emailForm.value);
     this.http.post('https://formspree.io/f/mvoykjop', this.emailForm.value).subscribe(data => {
-          console.warn(data)
-          this.emailForm.reset();
-          this.emailImage = "assets/email-signup-2.png"
-          this.emailShown = false
-          })
+      console.warn(data)
+      this.emailForm.reset();
+      this.emailImage = "assets/email-signup-2.png"
+      this.emailShown = false
+    })
   }
 
   onResize(event: any) {
     this.appState.checkSize()
-  }
-
-  loadMore() {
-    if (this.numPostsDisplayed)
-      this.numPostsToLoad$.next(this.numPostsDisplayed + 5);
   }
 
 }
