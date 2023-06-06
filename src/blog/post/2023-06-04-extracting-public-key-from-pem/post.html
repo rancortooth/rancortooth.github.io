@@ -1,0 +1,14 @@
+<p>date: "2023-06-04"
+    title: Extracting Public Key from PEM File
+    image: locks.png
+    categories: Devops</p>
+<h2 id="tagsdevopsssh">tags: devops, ssh</h2>
+<h5 id="imagegeneratedwithstable_diffusionopenvino">(image generated with stable_diffusion.openvino)</h5>
+<h1 id="extraingapublickeyfromapemfile">Extraing a public key from a PEM file</h1>
+<p>If you have a private key in the form of a PEM file, you can extract its public key. Just run the following command
+    with your private key and redirect the output to a new file to contain the public key.</p>
+<pre><code class="bash language-bash">ssh-keygen -y -f private_key1.pem &gt; public_key1.pub
+</code></pre>
+<p>And afterward, "public_key1.pub" should contain something like</p>
+<pre><code>ssh-rsa AAA3Bz........
+</code></pre>

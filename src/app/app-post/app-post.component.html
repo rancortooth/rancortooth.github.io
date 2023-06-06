@@ -6,5 +6,5 @@
         <div>{{ post.title }}</div>
     </h1>
     <img *ngIf="postImgUrl" [src]="this.postImgUrl" class="post-card-image-large" alt="{{ post.title }}" />
-    <markdown [src]="this.postUrl"></markdown>
+    <div [innerHTML]="this.postHtml"></div>
 </div>

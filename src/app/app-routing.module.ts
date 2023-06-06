@@ -13,16 +13,16 @@ const routes: Routes = [
   { path: 'starshipfluke/:episode', component: AppStarshipflukeComicsComponent },
   { path: 'billymeat/:episode', component: AppBillymeatComicsComponent },
   { path: '**', redirectTo: '' }
-  ];
-  
+];
+
 @NgModule({
-  imports: [ 
+  imports: [
     RouterModule.forRoot(routes, {
-    initialNavigation: 'enabledBlocking'
-})
+      initialNavigation: 'enabledBlocking'
+    })
   ],
   exports: [
     RouterModule
   ]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

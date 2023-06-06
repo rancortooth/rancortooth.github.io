@@ -1,4 +1,4 @@
-import { NgModule, SecurityContext } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,11 +17,10 @@ import { MatTableModule } from '@angular/material/table'
 import { MatMenuModule } from '@angular/material/menu';
 import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
 import { BMImageService } from './bmimage.service';
-import { AppPostComponent } from './app-post/app-post.component'
-import { MarkdownModule, MarkdownService, MarkedOptions } from 'ngx-markdown';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { PostBoxComponent } from './components/post-box/post-box.component';
+import { PostBoxComponent } from '../components/post-box/post-box.component';
+import { AppPostComponent } from './app-post/app-post.component';
 
 @NgModule({
     declarations: [
@@ -31,14 +30,13 @@ import { PostBoxComponent } from './components/post-box/post-box.component';
         AppAboutComponent,
         AppStarshipflukeComicsComponent,
         AppBillymeatComicsComponent,
-        AppPostComponent,
         PostBoxComponent,
+        AppPostComponent
     ],
     providers: [
         SFImageService,
         BMImageService,
-        Title,
-        MarkdownService
+        Title
     ],
     bootstrap: [
         AppComponent
@@ -56,10 +54,7 @@ import { PostBoxComponent } from './components/post-box/post-box.component';
         MatTableModule,
         MatMenuModule,
         NgxGoogleAnalyticsModule.forRoot('G-F6GT7CXJ8Q'),
-        MarkdownModule.forRoot({
-            sanitize: SecurityContext.NONE
-        }),
-        RouterModule
+        RouterModule,
     ]
 })
 export class AppModule {

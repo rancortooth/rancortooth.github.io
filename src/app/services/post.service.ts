@@ -4,7 +4,7 @@ import Post from '../models/post.js';
 import { mergeMap, Observable, of } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class PostService {
   getPostDetails(title: string): Observable<Post> {
     return of(Posts.Posts.filter((post: { link: string; }) => post.link === title)[0] as Post);

@@ -3,13 +3,14 @@ console.debug("STARTING POST GENERATION SCRIPT...")
 const fs = require('fs');
 const path = require('path');
 const metaParser = require('markdown-yaml-metadata-parser');
-const pathToPosts = path.join(__dirname, '../src/assets/posts');
+const pathToPosts = path.join(__dirname, '../markdown_posts');
 const pathToCompiledPosts = path.join(__dirname, '../src/_assets/posts');
 const ignoredFiles = [
   'gitignore',
   'pages.json',
   'posts.json',
   'portfolio.json',
+  // 'template_html.html'
 ];
 
 // create compiled posts directory
@@ -57,14 +58,14 @@ fs.readdir(pathToPosts, (err, files) => {
 
   files.filter(file => !file.includes(ignoredFiles))
     .forEach(file => {
-      const contents = fs.readFileSync(path.join(__dirname, `../src/assets/posts/${file}`), 'utf8');
+      const contents = fs.readFileSync(pathToPosts + '/' + file, 'utf8');
       const parsed = metaParser(contents);
 
-      fs.writeFile(`${pathToCompiledPosts}/${file}`, parsed.content, 'utf8', err => {
-        if (err) {
-          console.error("Error writing file contents", error);
-        }
-      });
+      // fs.writeFile(`${pathToCompiledPosts}/${file}`, parsed.content, 'utf8', err => {
+      //   if (err) {
+      //     console.error("Error writing file contents", error);
+      //   }
+      // });
 
       const shortFileName = file.replace('.md', '');
 
@@ -103,11 +104,11 @@ fs.readdir(pathToPosts, (err, files) => {
     if (err) throw err;
   });
 
-  // Print routesFile.txt to the console for validation
-  fs.readFile('routesFile.txt', 'utf8', (err, data) => {
-    if (err) throw err;
-    console.log(data);
-  });
+  // // Print routesFile.txt to the console for validation
+  // fs.readFile('routesFile.txt', 'utf8', (err, data) => {
+  //   if (err) throw err;
+  //   console.log(data);
+  // });
 
   const data = {
     Posts: fileArray
