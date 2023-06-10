@@ -14,7 +14,7 @@ mkdir docs
 mv dist/StarshipFluke/browser/* docs/
 mv dist/StarshipFluke/server/main.js docs/
 # Generating the static blog html pages separately
-node ./scripts/renderMarkdown.js
+node ../web_scripts/renderMarkdown.js
 
 if [ "$1" == "run" ]; then
     cd docs

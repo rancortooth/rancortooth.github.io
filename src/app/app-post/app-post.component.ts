@@ -69,21 +69,19 @@ export class AppPostComponent implements OnInit, AfterViewInit {
     // Ex: 'http://localhost:4200/blog/post/2023-06-04-angular-prerender-unhandled-exception/post.html';
     const url = location + "/post.html";
     this.contentService.getContent(url)
-      .subscribe(response => {
-        this.postHtml = response;
-      });
+      .subscribe(results => this.postHtml = results);
 
-    this.route.params.subscribe(
-      params => {
-        this.postService.getPostDetails(params['title']).subscribe(
-          postDetails => {
-            // this.postFilename = postDetails.filename;
-            this.postFilename = "/assets/blog/post/2023-06-04-angular-prerender-unhandled-exception/post.html";
-            // this.getData(this.postFilename);
-          }
-        );
-      }
-    );
+    // this.route.params.subscribe(
+    //   params => {
+    //     this.postService.getPostDetails(params['title']).subscribe(
+    //       postDetails => {
+    //         // this.postFilename = postDetails.filename;
+    //         this.postFilename = "/assets/blog/post/2023-06-04-angular-prerender-unhandled-exception/post.html";
+    //         // this.getData(this.postFilename);
+    //       }
+    //     );
+    //   }
+    // );
   }
   // public getData(path: string) {
   //   var url = "http://localhost:4200" + path;

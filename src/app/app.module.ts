@@ -54,7 +54,7 @@ import { AppPostComponent } from './app-post/app-post.component';
         MatTableModule,
         MatMenuModule,
         NgxGoogleAnalyticsModule.forRoot('G-F6GT7CXJ8Q'),
-        RouterModule,
+        RouterModule
     ]
 })
 export class AppModule {

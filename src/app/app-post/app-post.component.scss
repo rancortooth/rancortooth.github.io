@@ -1,16 +1,17 @@
-.thumbnail {      
+.thumbnail {
     vertical-align: bottom;
     max-height: 70px;
- } 
+}
 
 #responsive-image {
-    width: 100%;  height: auto;
-} 
+    width: 100%;
+    height: auto;
+}
 
 ul {
     padding: 0;
     margin: 0;
-}      
+}
 
 li {
     display: inline;
@@ -29,7 +30,7 @@ li {
     // &::-webkit-scrollbar {
     //     display: none;
     // }
-  }
+}
 
 .footer {
     position: fixed;
@@ -47,7 +48,7 @@ li {
 .row {
     display: flex;
 }
-  
+
 .column-sm {
     flex: 20%;
 }
@@ -61,15 +62,15 @@ li {
 }
 
 .blankspace {
-    display:block;
-    width:100%;
-    height:150px;
+    display: block;
+    width: 100%;
+    height: 150px;
 }
 
 .blankspace-sm {
-    display:block;
-    width:100%;
-    height:40px;
+    display: block;
+    width: 100%;
+    height: 40px;
 }
 
 .button-prev {
@@ -85,8 +86,8 @@ li {
 }
 
 .button-opacity {
- opacity: 0.5;
- width: 50%;
+    opacity: 0.5;
+    width: 50%;
 }
 
 .copyright {
