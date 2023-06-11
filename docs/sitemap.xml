@@ -37,4 +37,10 @@
         <changefreq>monthly</changefreq>
         <priority>1</priority>
       </url >
+      <url>
+        <loc> https://starshipfluke.com/blog/post/2023-06-11-one-line-retrieval-of-aws-secret-bash</loc>
+        <lastmod>2023-06-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1</priority>
+      </url >
 </urlset>

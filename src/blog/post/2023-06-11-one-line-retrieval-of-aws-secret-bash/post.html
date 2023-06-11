@@ -1,0 +1,21 @@
+<h5 id="imagegeneratedwithstable_diffusionopenvino">(image generated with stable_diffusion.openvino)</h5>
+<h1 id="howtoretrieveanawssecretinonelineofbash">How to retrieve an AWS secret in one line of bash</h1>
+<p>I've encountered the need to retrieve secrets from AWS's secretsmanager while working in Bash. Ideally, I need just the value of the secret; clean, no json, no quotes, etc.</p>
+<h2 id="jqisyourfriend">jq is your friend</h2>
+<p>"jq" is a powerful, command-line json parser and is endlessly handy when working with the AWS CLI. Using jq can be an art all its own, but for the sake of these examples, I wanted to call-out the "-r" option. "-r", or "raw" output, will give you the pure values, with no quotes.</p>
+<p><a href="https://jqlang.github.io/jq/" target="_blank">https://jqlang.github.io/jq/</a></p>
+<h2 id="examples">Examples</h2>
+<pre class="bash language-bash"><code class="hljs bash language-bash"><span class="hljs-comment">#</span>
+<span class="hljs-comment"># For a secret with a simple string type value</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-built_in">export</span> MY_SECRET=$(aws --region us-west-2 secretsmanager get-secret-value --secret-id <span class="hljs-string">&quot;smsd/my_secret&quot;</span> | jq -r .SecretString)
+<span class="hljs-built_in">echo</span> <span class="hljs-variable">$MY_SECRET</span>
+
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># For a secret with json {name:value} values where you want just one of those values</span>
+<span class="hljs-comment">#  &quot;secret_name&quot; is the name of the name/value pair you want contained in the secret</span>
+<span class="hljs-comment">#  { &quot;secret_name&quot;: &quot;secret_value&quot; }</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-built_in">export</span> MY_SECRET=$(aws --region us-west-2 secretsmanager get-secret-value --secret-id <span class="hljs-string">&quot;smsd/my_secret&quot;</span> | jq -r .SecretString | jq -r .secret_name)
+<span class="hljs-built_in">echo</span> <span class="hljs-variable">$MY_SECRET</span>
+</code></pre>

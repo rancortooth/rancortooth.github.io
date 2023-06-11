@@ -38,3 +38,4 @@
 /billymeat/12
 /blog/post/2023-06-04-angular-prerender-unhandled-exception
 /blog/post/2023-06-04-extracting-public-key-from-pem
+/blog/post/2023-06-11-one-line-retrieval-of-aws-secret-bash
