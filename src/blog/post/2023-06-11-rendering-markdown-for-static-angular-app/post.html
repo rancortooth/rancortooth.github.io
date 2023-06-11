@@ -1,0 +1,87 @@
+<h5 id="imagegeneratedwithstable_diffusionopenvino">(image generated with stable_diffusion.openvino)</h5>
+<h1 id="renderingmarkdowntohtmlforusewithstaticangularapp">Rendering Markdown to HTML for Use with Static Angular App</h1>
+<h2 id="premise">Premise</h2>
+<p>Angular is awesome for creating dynamic, beautiful websites but it sucks when it comes to SEO. The robots and crawlers which scan our websites for consumption by search engines won't render your page for you; for the most part, they expect plain, easily understood HTML. To make your Angular website more SEO friendly, you can prerender as much of it as possible. In my case, I'm using nguniversal to prerender my Angular site.</p>
+<h2 id="usingmarkdowndocumentstoquicklyaddnewcontenttoyourwebsite">Using Markdown documents to quickly add new content to your website</h2>
+<p>I write my blog posts as Markdown and then use the JS library "showdown" and its extensions to render the markdown into pretty HTML.</p>
+<h3 id="thegeneralworkflow">The general workflow</h3>
+<p>1) Write your content in markdown<br/>
+2) Prerender your Angular website<br/>
+3) Using a post-build script, render the markdown into HTML<br/>
+4) Copy the rendered HTML to the prerendering output folder<br/>
+5) Update your website<br/></p>
+<h2 id="htmlrenderingscript">HTML rendering script</h2>
+<p>In this script, I'm using showdown to render the markdown to HTML, plus its "showdown-highlight" extension which enables syntax highlighting on code blocks.</p>
+<h3 id="rendermarkdownjs">renderMarkdown.js</h3>
+<pre class="javascript language-javascript"><code class="hljs javascript language-javascript"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>);
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>);
+
+<span class="hljs-keyword">const</span> mdFilePath = <span class="hljs-string">&#x27;/path/to/md/files/&#x27;</span>;
+<span class="hljs-keyword">const</span> htmlPath = <span class="hljs-string">&#x27;/path/to/place/rendered/html/&#x27;</span>;
+
+<span class="hljs-comment">// List of files to ignore which may be hanging around your *.md files</span>
+<span class="hljs-keyword">const</span> ignoredFiles = [
+    <span class="hljs-string">&#x27;somefile_to_ignore.txt&#x27;</span>
+];
+
+<span class="hljs-comment">// Loop through the *.md files and process them</span>
+fs.<span class="hljs-title function_">readdir</span>(mdFilePath, <span class="hljs-function">(<span class="hljs-params">err, files</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (err) <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&quot;Error reading md file&quot;</span>, err);
+
+    files.<span class="hljs-title function_">filter</span>(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> !file.<span class="hljs-title function_">includes</span>(ignoredFiles))
+
+        .<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
+
+            <span class="hljs-keyword">var</span> filesys = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;fs&#x27;</span>)
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Markdown file to render: &quot;</span> + mdFilePath + file);
+
+            <span class="hljs-keyword">const</span> contents = filesys.<span class="hljs-title function_">readFileSync</span>(mdFilePath + file, <span class="hljs-string">&#x27;utf8&#x27;</span>);
+            <span class="hljs-keyword">const</span> mdPathName = file.<span class="hljs-title function_">replace</span>(<span class="hljs-string">&#x27;.md&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>);
+            <span class="hljs-keyword">const</span> htmlFile = htmlPath + mdPathName + <span class="hljs-string">&quot;/rendered_md.html&quot;</span>;
+
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;htmlPath: &quot;</span> + htmlPath);
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;mdPathName: &quot;</span> + mdPathName);
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Final HTML File: &quot;</span> + htmlFile + <span class="hljs-string">&quot;\n&quot;</span>);
+
+            <span class="hljs-comment">// Strip out the metadata</span>
+            <span class="hljs-keyword">const</span> newContents = contents.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/^---[0-9a-zA-Z:&quot;\s\S]*---$/m</span>, <span class="hljs-string">&quot;&quot;</span>);
+
+            <span class="hljs-comment">// Create the path for the rendered html file</span>
+            <span class="hljs-keyword">try</span> {
+                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Creating path: &quot;</span> + htmlPath + mdPathName);
+                fs.<span class="hljs-title function_">mkdirSync</span>(htmlPath + mdPathName, { <span class="hljs-attr">recursive</span>: <span class="hljs-literal">true</span> });
+            } <span class="hljs-keyword">catch</span> (err) {
+                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(htmlPath + mdPathName + <span class="hljs-string">&quot; &quot;</span> + err.<span class="hljs-property">message</span>);
+            }
+
+            <span class="hljs-comment">// Render the markdown into html</span>
+            <span class="hljs-keyword">const</span> showdown = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;showdown&#x27;</span>);
+            showdownHighlight = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;showdown-highlight&quot;</span>);
+
+            <span class="hljs-keyword">let</span> converter = <span class="hljs-keyword">new</span> showdown.<span class="hljs-title class_">Converter</span>({
+                <span class="hljs-attr">extensions</span>: [<span class="hljs-title function_">showdownHighlight</span>({
+                    <span class="hljs-attr">pre</span>: <span class="hljs-literal">true</span>
+                    , <span class="hljs-attr">auto_detection</span>: <span class="hljs-literal">true</span>
+                })]
+            });
+            <span class="hljs-keyword">let</span> html = converter.<span class="hljs-title function_">makeHtml</span>(newContents);
+
+            <span class="hljs-comment">// Write the rendered html to disk</span>
+            filesys.<span class="hljs-title function_">writeFileSync</span>(htmlFile, html, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&#x27;utf8&#x27;</span>, <span class="hljs-attr">flag</span>: <span class="hljs-string">&quot;w+&quot;</span> }, <span class="hljs-keyword">function</span> (<span class="hljs-params">err</span>) {
+                <span class="hljs-keyword">if</span> (err) <span class="hljs-keyword">throw</span> err;
+            });
+        });
+});
+</code></pre>
+<p><p></p>
+<h4 id="irunsomethingsimilartotheabovescriptfromabuildshwrapperscript">I run something similar to the above script from a "build.sh" wrapper script</h4>
+<pre class="bash language-bash"><code class="hljs bash language-bash"><span class="hljs-meta">#!/bin/bash</span>
+<span class="hljs-built_in">set</span> -ex
+
+<span class="hljs-comment"># Clean up and build/prerender your site</span>
+<span class="hljs-built_in">rm</span> -rf dist
+<span class="hljs-built_in">rm</span> -rf .angular/cache/
+ng run MyWebsite:prerender
+
+node ./renderMarkdown.js
+</code></pre>

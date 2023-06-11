@@ -43,4 +43,10 @@
         <changefreq>monthly</changefreq>
         <priority>1</priority>
       </url >
+      <url>
+        <loc> https://starshipfluke.com/blog/post/2023-06-11-rendering-markdown-for-static-angular-app</loc>
+        <lastmod>2023-06-11</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1</priority>
+      </url >
 </urlset>

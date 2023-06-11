@@ -28,10 +28,10 @@ try {
 } catch (error) {
   console.error(error);
 }
-fs.copyFile("base_routesFile.txt", "routesFile.txt", fs.constants.COPYFILE_EXCL, (err) => {
+fs.copyFileSync("base_routesFile.txt", "routesFile.txt", fs.constants.COPYFILE_EXCL, (err) => {
   if (err) throw (err);
 });
-fs.appendFile('routesFile.txt', '\n', function (err) {
+fs.appendFileSync('routesFile.txt', '\n', function (err) {
   if (err) throw err;
 });
 
@@ -42,10 +42,10 @@ try {
 } catch (error) {
   console.error(error);
 }
-fs.copyFile("src/base_sitemap.xml.txt", "src/sitemap.xml", fs.constants.COPYFILE_EXCL, (err) => {
+fs.copyFileSync("src/base_sitemap.xml.txt", "src/sitemap.xml", fs.constants.COPYFILE_EXCL, (err) => {
   if (err) throw err;
 });
-fs.appendFile('src/sitemap.xml', '\n', function (err) {
+fs.appendFileSync('src/sitemap.xml', '\n', function (err) {
   if (err) throw err;
 });
 
@@ -60,13 +60,6 @@ fs.readdir(pathToPosts, (err, files) => {
     .forEach(file => {
       const contents = fs.readFileSync(pathToPosts + '/' + file, 'utf8');
       const parsed = metaParser(contents);
-
-      // fs.writeFile(`${pathToCompiledPosts}/${file}`, parsed.content, 'utf8', err => {
-      //   if (err) {
-      //     console.error("Error writing file contents", error);
-      //   }
-      // });
-
       const shortFileName = file.replace('.md', '');
 
       fileArray.push({
@@ -80,14 +73,14 @@ fs.readdir(pathToPosts, (err, files) => {
       });
 
       // Append a route for this post to routesFile.txt
-      fs.appendFile('routesFile.txt', '/blog/post/' + shortFileName + '\n', function (err) {
+      fs.appendFileSync('routesFile.txt', '/blog/post/' + shortFileName + '\n', function (err) {
         if (err) throw err;
       });
 
       // Append an entry to sitemap.xml
       const today = new Date();
       const date = today.getFullYear() + "-" + (today.getMonth() + 1).toString().padStart(2, '0') + "-" + today.getDate().toString().padStart(2, '0');
-      fs.appendFile('src/sitemap.xml', '\
+      fs.appendFileSync('src/sitemap.xml', '\
       <url>\n\
         <loc> https://starshipfluke.com/blog/post/' + shortFileName + '</loc>\n\
         <lastmod>' + date + '</lastmod>\n\
@@ -100,21 +93,15 @@ fs.readdir(pathToPosts, (err, files) => {
     });
 
   // Close sitemap.xml
-  fs.appendFile('src/sitemap.xml', '</urlset>\n', function (err) {
+  fs.appendFileSync('src/sitemap.xml', '</urlset>\n', function (err) {
     if (err) throw err;
   });
-
-  // // Print routesFile.txt to the console for validation
-  // fs.readFile('routesFile.txt', 'utf8', (err, data) => {
-  //   if (err) throw err;
-  //   console.log(data);
-  // });
 
   const data = {
     Posts: fileArray
   }
 
-  fs.writeFile(`${pathToCompiledPosts}/posts.json`, JSON.stringify(data), 'utf8', err => {
+  fs.writeFileSync(`${pathToCompiledPosts}/posts.json`, JSON.stringify(data), 'utf8', err => {
     if (err) console.log(err);
   });
 });
