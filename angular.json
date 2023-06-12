@@ -31,7 +31,8 @@
               "src/CNAME",
               "src/sitemap.xml",
               "src/ads.txt",
-              "src/blog"
+              "src/blog",
+              "src/robots.txt"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",

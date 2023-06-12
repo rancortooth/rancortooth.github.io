@@ -1,0 +1,2 @@
+Sitemap: https://starshipfluke.com/sitemap.xml
+User-agent: *

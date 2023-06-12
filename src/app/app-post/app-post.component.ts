@@ -16,7 +16,6 @@ import { delay, switchMap, tap } from 'rxjs/operators';
 })
 export class AppPostComponent implements OnInit, AfterViewInit {
   filterBy?: string = 'all'
-  postDetails: Post | undefined;
   appState: ApplicationStateService;
   postFilename: string = "";
   postHtml: any;
@@ -34,7 +33,6 @@ export class AppPostComponent implements OnInit, AfterViewInit {
     private metaService: MetaService,
     private contentService: ContentService
   ) {
-    // this.postDetails = this.postService.getPostDetails();
     this.appState = this.applicationState;
   }
 
@@ -58,53 +56,21 @@ export class AppPostComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.title.setTitle("Blog Post")
-    this.meta.removeTag('name=robots');
-    this.meta.addTags([
-      { name: 'description', content: 'Blog Post' },
-      { name: 'robots', content: 'index' },
-    ]);
-    this.metaService.createCanonicalURL();
 
-    // Ex: 'http://localhost:4200/blog/post/2023-06-04-angular-prerender-unhandled-exception/post.html';
-    const url = location + "/post.html";
-    this.contentService.getContent(url)
-      .subscribe(results => this.postHtml = results);
-
-    // this.route.params.subscribe(
-    //   params => {
-    //     this.postService.getPostDetails(params['title']).subscribe(
-    //       postDetails => {
-    //         // this.postFilename = postDetails.filename;
-    //         this.postFilename = "/assets/blog/post/2023-06-04-angular-prerender-unhandled-exception/post.html";
-    //         // this.getData(this.postFilename);
-    //       }
-    //     );
-    //   }
-    // );
+    this.postService.getPostDetails(this.router.url.replace('/blog/post/', ''))
+      .subscribe((post: Post) => {
+        this.title.setTitle(post.title!);
+        this.meta.removeTag('name=robots');
+        this.meta.addTags([
+          { name: 'description', content: post.title! },
+          { name: 'robots', content: 'index' },
+        ]);
+        this.metaService.createCanonicalURL();
+        const url = location + "/post.html";
+        this.contentService.getContent(url)
+          .subscribe(results => this.postHtml = results);
+      });
   }
-  // public getData(path: string) {
-  //   var url = "http://localhost:4200" + path;
-  //   this.httpClient.get<any[]>(url)
-  //     .subscribe(data => {
-  //       this.postHtml = data;
-  //     },
-  //       error => {
-  //       }
-  //     );
-  // }
-
-  // public getContent(path: string): string {
-  //   return this.contentService.get(path);
-  // }
-
-  // public getContent(path: string) {
-  //   this.contentService.get(path).subscribe(
-  //     html => {
-  //       this.postHtml = html;
-  //     }
-  //   );
-  // }
 
   onResize(event: any) {
     this.appState.checkSize()
