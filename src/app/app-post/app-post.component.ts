@@ -63,7 +63,8 @@ export class AppPostComponent implements OnInit, AfterViewInit {
         this.meta.removeTag('name=robots');
         this.meta.addTags([
           { name: 'description', content: post.title! },
-          { name: 'robots', content: 'index' },
+          { name: 'robots', content: 'index, follow' },
+          { name: 'og:type', content: 'article' },
         ]);
         this.metaService.createCanonicalURL();
         const url = location + "/post.html";
