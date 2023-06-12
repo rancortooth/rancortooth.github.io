@@ -1,3 +1,6 @@
+<button mat-button style="width: 80px; margin:10px; margin-top:20px;"
+    [routerLink]="'/'"><mat-icon>arrow_back_ios</mat-icon></button>
+
 <div class="post-card-content" *ngIf="post$ | async; let post">
     <div class="flex justify-between">
         <div>{{post.date | date: 'longDate'}}</div>
