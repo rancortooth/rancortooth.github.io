@@ -64,8 +64,6 @@ $light-theme: mat.define-light-theme((color: (primary: mat.define-palette(mat.$i
 
 .post-card-image-large {
   display: block;
-  // margin-left: auto;
-  // margin-right: auto;
   width: 70%;
   padding: 10px;
   max-width: 300px;
@@ -232,4 +230,5 @@ a {
 li {
   font-family: arial;
   color: rgb(231, 249, 255);
+  margin-left: 20px;
 }

@@ -1,0 +1,86 @@
+<h5 id="imagegeneratedwithstable_diffusionopenvino">(image generated with stable_diffusion.openvino)</h5>
+<h1 id="howtocreateajumpboxinawstoreachresourcesinaprivatesubnet">How to create a jump-box in AWS to reach resources in a private subnet</h1>
+<h2 id="whatsajumpbox">What's a Jump-box?</h2>
+<p>A jump-box, or bastion host, is an EC2 instance which is exposed to the internet with port 22 open. Users connect to this host in order to reach resources in private subnets, which are not exposed to the internet.</p>
+<h2 id="thenetworkarchitecture">The network architecture</h2>
+<p><img src="assets/images/aws-jumpbox.jpg" width="100%"><br/></p>
+<p>In application architectures, it's common to have secure resources located within a private subnet in order to shield them from internet access. A "private" subnet has no routes to a NAT Gateway or Internet Gateway and its compute resources will not have public IP addresses. In order to access these private resources from outside the VPC, we'll need to create an EC2 instance in a public subnet and with a public IP address.</p>
+<h2 id="thejumpboxsetup">The Jump-box Setup</h2>
+<ul>
+<li>If you don't have one already, create another subnet to act as your public subnet:<ul>
+<li>In the AWS console, go to: VPC --&gt; Subnets --&gt; Create subnet</li></ul></li>
+<li>Your VPC will need an Internet Gateway (IGW) associated with it<ul>
+<li>If you don't have an IGW, go to: VPC --&gt; Internet Gateways --&gt; Create Internet Gateway (Note: AWS charges for traffic through an IGW)</li>
+<li>Make sure your IGW is attached to your VPC: VPC --&gt; Internet Gateways --&gt; Select your IGW --&gt; Attach to VPC</li>
+<li>Make sure your public subnet has a route for "0.0.0.0/0" to the IGW in its route table: VPC --&gt; Route tables --&gt; select your route table --&gt; Edit routes</li>
+<li>Note: If you create a new route table rather than use the VPC's default route table, make sure the route table has been associated to your public subnet
+<p>
+<img src="assets/images/igw_route.jpg" width="80%"></li></ul></li>
+</ul>
+<h2 id="creatingthejumpbox">Creating the Jump-box</h2>
+<h3 id="createakeypairforusewiththejumpbox">Create a key pair for use with the Jump-box</h3>
+<p>In the console, go to: EC2 --&gt; Key Pairs --&gt; Create key pair</p>
+<ul>
+<li>Select "pem" as the type if you're on linux (also, do a "chmod 600" to the downloaded file or else ssh will complain)</li>
+<li>Keep the downloaded private key handy so you can ssh onto your jump-box later</li>
+</ul>
+<p><p></p>
+<h3 id="launchanec2instanceinthepublicsubnet">Launch an EC2 instance in the public subnet</h3>
+<p>In the console, go to: EC2 --&gt; Instances --&gt; Launch Instances</p>
+<h4 id="ec2instancesettings">EC2 instance settings:</h4>
+<ul>
+<li>Instance Type = t2.micro (recommended)</li>
+<li>OS = Amazon Linux 2 (recommended)</li>
+<li>Select the key you created above</li>
+<li>Edit the network settings and make sure:<ul>
+<li>You select your VPC</li>
+<li>You select your public subnet</li>
+<li>Auto-assign public IP should be Enabled</li></ul></li>
+<li>Edit the inbound security group rules so that it allows port 22 from "My IP" only, not the open internet, (i.e. 0.0.0.0/0)</li>
+<li>Other details can be left at their defaults</li>
+</ul>
+<p><p></p>
+<h3 id="addaruletoyourprivateresourcessecuritygrouptoallowport22fromjumpbox">Add a rule to your private resource's security group to allow port 22 from jump-box</h3>
+<p>Whatever your private resource is (EC2 instance, ECS task, RDS, etc.) you should edit its security group and add a rule that allows access to port 22 from the jump-box's security group. Adding a rule that allows access to a security group is like saying "allow any resources which use this security group to access me on this port".
+<p>
+<img src="assets/images/aws-jumpbox2.jpg" width="80%">
+<p></p>
+<h1 id="connectingtoyourprivatecomputeresource">Connecting to your private compute resource</h1>
+<h2 id="getthepublicipaddress">Get the public IP address</h2>
+<p>The public IP address of the jumpbox can be found in the AWS console at:</p>
+<ul>
+<li>EC2 --&gt; Instances --&gt; (your jumpbox instance) --&gt; Public IPv4 address</li>
+</ul>
+<h2 id="usesshtoconnecttoyourjumpboxfromyourlocalmachine">Use SSH to connect to your jumpbox from your local machine</h2>
+<pre><code class="hljs"><span class="hljs-comment"># When we ssh onto the jumpbox, we need to pass our private key along</span>
+<span class="hljs-comment"># with us so we can ssh onto the private instance afterward. The</span>
+<span class="hljs-comment"># private instance can have its own key or the same as the jumpbox.</span>
+
+<span class="hljs-comment"># Start-up the ssh-agent to store our keys</span>
+eval <span class="hljs-string">&quot;$(ssh-agent -s)&quot;</span>
+
+<span class="hljs-comment"># Add our key to the agent (could be multiple keys here if needed)</span>
+ssh-add my_key.pem
+-&gt; Identity added: my_key.pem (my_key.pem)
+
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># SSH onto the jumpbox using the public IP address</span>
+<span class="hljs-comment">#   &#x27;-A&#x27; tells ssh to pass along the agent&#x27;s keys</span>
+<span class="hljs-comment">#   &#x27;ec2-user&#x27; is the default user on EC2 instances. This could be</span>
+<span class="hljs-comment">#              different dependin on what AMI is used.</span>
+<span class="hljs-comment">#    </span>
+ssh -A ec2-user<span class="hljs-meta">@1.2.3.4</span>
+-&gt;
+Last login: Tue Jun 13 18:47:52 2023 from blah blah
+
+       __|<span class="hljs-string">  __</span>|<span class="hljs-string">_  )
+       _</span>|<span class="hljs-string">  (     /   Amazon Linux 2 AMI
+      ___</span>|<span class="hljs-string">\___</span>|<span class="hljs-string">___</span>|
+$
+</code></pre>
+<h2 id="fromthejumpboxsshontoyourprivateec2instance">From the jump-box, ssh onto your private EC2 instance</h2>
+<p>SSH onto the private EC2 instance using its private IP address</p>
+<pre><code class="hljs"><span class="hljs-attribute">ssh</span> <span class="hljs-number">10.0.0.0</span>
+</code></pre>
+<h2 id="privateresourcesotherthananec2instance">Private resources other than an EC2 instance</h2>
+<p>A jump-box such as this can also help connect to private ECS tasks via their private IP addresses. You can also install utilities on the jump-box, such as database tools, for working on private RDS instances.</p>
