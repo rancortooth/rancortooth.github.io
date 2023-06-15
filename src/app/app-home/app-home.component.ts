@@ -52,7 +52,7 @@ export class AppHomeComponent implements OnInit {
 
   posts$: Observable<Post[]> | undefined;
   hasMore$ = new BehaviorSubject(true);
-  numPostsToLoad$ = new BehaviorSubject(5);
+  numPostsToLoad$ = new BehaviorSubject(20);
   numPostsDisplayed: number | undefined;
   totalPosts: number | undefined;
   onDestroy$ = new Subject();
