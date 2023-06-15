@@ -41,5 +41,6 @@
 /blog/post/2023-06-11-one-line-retrieval-of-aws-secret-bash
 /blog/post/2023-06-11-rendering-markdown-for-static-angular-app
 /blog/post/2023-06-12-aws-create-jumpbox
+/blog/post/2023-06-15-cdk-add-sg-rule
 /blog/post/2023-06-15-git-different-users-for-repos
 /blog/post/2023-06-15-stable-diffusion-no-gpu

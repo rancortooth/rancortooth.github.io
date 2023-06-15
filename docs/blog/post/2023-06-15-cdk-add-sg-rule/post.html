@@ -1,0 +1,66 @@
+<h5 id="imagegeneratedwithstable_diffusionopenvino">(image generated with stable_diffusion.openvino)</h5>
+<h1 id="prerequisitestepsoryoucanjustjumptothecodeexamplebelow">Prerequisite steps (or you can just jump to the code example below)</h1>
+<ul>
+<li>Clone the git repository here: https://github.com/rancortooth/simple-cdk</li>
+<li>Install node dependencies</li>
+</ul>
+<pre class="bash language-bash"><code class="hljs bash language-bash"><span class="hljs-built_in">cd</span> simple-cdk
+npm install
+</code></pre>
+<ul>
+<li>If you haven't already, make sure your AWS account/region has been bootstrapped for CDK</li>
+</ul>
+<pre class="bash language-bash"><code class="hljs bash language-bash"><span class="hljs-comment"># For example:</span>
+cdk bootstrap aws://234167234234/us-east-2
+</code></pre>
+<ul>
+<li>List the example deployments</li>
+</ul>
+<pre class="bash language-bash"><code class="hljs bash language-bash">cdk <span class="hljs-built_in">ls</span>
+</code></pre>
+<p><p></p>
+<h1 id="binsimplecdkts">bin/simple-cdk.ts</h1>
+<pre class="typescript language-typescript"><code class="hljs typescript language-typescript"><span class="hljs-meta">#!/usr/bin/env node</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;source-map-support/register&#x27;</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> cdk <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;aws-cdk-lib&#x27;</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">SimpleCdkStackAddSecurityGroupRule</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../lib/simple-cdk-stack-add-security-group-rule&#x27;</span>;
+
+<span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> cdk.<span class="hljs-title class_">App</span>();
+
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// <span class="hljs-doctag">NOTE:</span> Change &quot;account&quot; and &quot;region&quot; to match your AWS setup</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">//   env: { account: &#x27;123456789012&#x27;, region: &#x27;us-east-1&#x27; }</span>
+<span class="hljs-comment">//</span>
+
+<span class="hljs-keyword">new</span> <span class="hljs-title class_">SimpleCdkStackAddSecurityGroupRule</span>(app, <span class="hljs-string">&#x27;SimpleCdkStackAddSecurityGroupRule&#x27;</span>, {
+
+  <span class="hljs-attr">env</span>: { <span class="hljs-attr">account</span>: <span class="hljs-string">&#x27;123456789012&#x27;</span>, <span class="hljs-attr">region</span>: <span class="hljs-string">&#x27;us-east-1&#x27;</span> },
+
+});
+</code></pre>
+<p><p></p>
+<h1 id="libsimplecdkstackaddsecuritygrouprulets">lib/simple-cdk-stack-add-security-group-rule.ts</h1>
+<pre class="typescript language-typescript"><code class="hljs typescript language-typescript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> cdk <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;aws-cdk-lib&#x27;</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Construct</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;constructs&#x27;</span>;
+
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> ec2 <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;aws-cdk-lib/aws-ec2&#x27;</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SimpleCdkStackAddSecurityGroupRule</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">cdk.Stack</span> {
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">scope: Construct, id: <span class="hljs-built_in">string</span>, props?: cdk.StackProps</span>) {
+    <span class="hljs-variable language_">super</span>(scope, id, props);
+
+    <span class="hljs-comment">//</span>
+    <span class="hljs-comment">// Add an inbound rule to securityGroupB which allows</span>
+    <span class="hljs-comment">// allows securityGroupA to access port 22</span>
+    <span class="hljs-comment">//</span>
+    <span class="hljs-keyword">const</span> securityGroupA = ec2.<span class="hljs-property">SecurityGroup</span>.<span class="hljs-title function_">fromSecurityGroupId</span>(<span class="hljs-variable language_">this</span>, <span class="hljs-string">&quot;security-group-A&quot;</span>, <span class="hljs-string">&#x27;sg-091bbd3cbfb6643c9&#x27;</span>);
+
+    <span class="hljs-keyword">const</span> securityGroupB = ec2.<span class="hljs-property">SecurityGroup</span>.<span class="hljs-title function_">fromSecurityGroupId</span>(<span class="hljs-variable language_">this</span>, <span class="hljs-string">&quot;security-group-B&quot;</span>, <span class="hljs-string">&#x27;sg-094283b4eb5b6529d&#x27;</span>);
+
+    <span class="hljs-comment">// Allow all TCP traffic from &quot;allowThisSecurityGroup&quot; to &quot;securityGroup&quot;</span>
+    securityGroupB.<span class="hljs-title function_">addIngressRule</span>(securityGroupA, ec2.<span class="hljs-property">Port</span>.<span class="hljs-title function_">allTcp</span>());
+
+  }
+}
+</code></pre>
