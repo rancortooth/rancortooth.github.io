@@ -1,0 +1,54 @@
+<h5 id="imagegeneratedwithstable_diffusionopenvino">(image generated with stable_diffusion.openvino)</h5>
+<h1 id="runningstablediffusionaionwindowswithnogpu">Running StableDiffusion AI on Windows with NO GPU</h1>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Windows 10/11 PC, laptop</li>
+<li>Git</li>
+<li>Python 3.10.x</li>
+<li>Administrator access on your Windows machine</li>
+<li>Machine should have at least 8GB of RAM but 16GB or more is better</li>
+<li>Free disk space &gt; 30GB (for messing around, not strictly necessary)</li>
+</ul>
+<h2 id="steps">Steps</h2>
+<p><img src="assets/images/warning.png" width="30px"> <strong>I had to edit 'requirements.txt' and upgrade numpy from '1.19.5' to '1.21.6' in order for this to work with python 3.10.x</strong></p>
+<h3 id="noteallworkshouldbedoneinapowershellscriptwithadministriveprivilleges">Note: All work should be done in a powershell script with administrive privilleges</h3>
+<ul>
+<li>Install prerequisites if you don’t have them already:<ul>
+<li>Git + Python</li></ul></li>
+<li>Side note: Do a quick upgrade of your pip if needed:</li>
+</ul>
+<pre class="bash language-bash"><code class="hljs bash language-bash">python -m pip install --upgrade pip
+</code></pre>
+<ul>
+<li>Clone StableDiffusion:</li>
+</ul>
+<pre class="bash language-bash"><code class="hljs bash language-bash">git <span class="hljs-built_in">clone</span> https://github.com/bes-dev/stable_diffusion.openvino
+</code></pre>
+<ul>
+<li>CD into where you cloned the repository</li>
+<li>Install openvino library with pytorch:</li>
+</ul>
+<pre class="bash language-bash"><code class="hljs bash language-bash">pip install openvino-dev[onnx,pytorch]==2022.3.0
+</code></pre>
+<ul>
+<li>Install the rest of StableDiffusions dependencies:</li>
+</ul>
+<pre class="bash language-bash"><code class="hljs bash language-bash">pip install -r requirements.txt
+</code></pre>
+<p><p></p>
+<h2 id="runningstablediffusionai">Running stable diffusion AI</h2>
+<pre><code class="hljs">python .\<span class="hljs-built_in">demo</span>.py --<span class="hljs-built_in">prompt</span>
+</code></pre>
+<p><p></p>
+<h2 id="powershellscripttorunmanyiterationsofthesameprompt">Powershell script to run many iterations of the same prompt</h2>
+<h3 id="savethisscriptasrunmanyps1andrunasrunmanyps15colorfulschoolbus">Save this script as "runmany.ps1" and run as "./runmany.ps1 5 "colorful school bus"</h3>
+<pre><code class="hljs">echo <span class="hljs-string">&quot;Start of Loop&quot;</span>
+<span class="hljs-variable">$num</span>=<span class="hljs-variable">$args</span><span class="hljs-selector-attr">[0]</span>
+
+<span class="hljs-function"><span class="hljs-title">for</span><span class="hljs-params">(<span class="hljs-variable">$i</span>=<span class="hljs-number">1</span>; <span class="hljs-variable">$i</span> -le <span class="hljs-variable">$num</span>; <span class="hljs-variable">$i</span>=<span class="hljs-variable">$i</span>+<span class="hljs-number">1</span>)</span></span> {
+  <span class="hljs-variable">$ts</span>=$(Get-Date -Format <span class="hljs-string">&quot;MM-dd-yyyy-HH-mm-ss&quot;</span>)
+  python .\demo<span class="hljs-selector-class">.py</span> <span class="hljs-attr">--prompt</span> <span class="hljs-string">&quot;$args[1]&quot;</span> <span class="hljs-attr">--output</span> <span class="hljs-string">&quot;image_$ts.png&quot;</span>
+}
+
+echo <span class="hljs-string">&quot;Done!!!&quot;</span>
+</code></pre>

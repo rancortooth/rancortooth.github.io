@@ -1,0 +1,22 @@
+<h5 id="imagegeneratedwithstable_diffusionopenvino">(image generated with stable_diffusion.openvino)</h5>
+<h1 id="howtosetgitcredentialsfordifferentrepositorieswhenusinghttps">How to set git credentials for different repositories when using https</h1>
+<pre class="bash language-bash"><code class="hljs bash language-bash"><span class="hljs-comment"># Instruct git to use the credential.helper store and</span>
+<span class="hljs-comment"># to store credentials for different repositories</span>
+git config --global credential.helper store
+git config --global credential.https://github.com.useHttpPath <span class="hljs-literal">true</span>
+
+<span class="hljs-comment"># Get your remote URL</span>
+git config --get remote.origin.url
+
+<span class="hljs-comment"># Configure your credentials</span>
+git config credential.&lt;REMOTE_URL&gt;.username &lt;YOUR_USER_NAME&gt;
+</code></pre>
+<p><p>
+While pushing changes, you'll be prompted for your password once and git will store them on disk.</p>
+<p><img src="assets/images/warning.png" width="30px"></p>
+<h2 id="warnings">Warnings</h2>
+<ul>
+<li>Using <strong>credential.helper</strong> will store your credentials in PLAIN TEXT in <strong>~/.git-credentials</strong> by default</li>
+<li>Do not use this on a shared machine/login account
+<p></li>
+</ul>
