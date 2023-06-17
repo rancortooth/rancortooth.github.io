@@ -44,3 +44,4 @@
 /blog/post/2023-06-15-cdk-add-sg-rule
 /blog/post/2023-06-15-git-different-users-for-repos
 /blog/post/2023-06-15-stable-diffusion-no-gpu
+/blog/post/2023-06-16-what-is-devsecops-and-what-can
