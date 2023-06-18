@@ -106,5 +106,7 @@ So, how could all this have helped during the Log4Shell CVE? Here's an idea of h
     * No need to panic when our components are easily updated via automation
     * Wether we're talking about back-end server software or mobile clients - have the automation in place to rapidly update whenever possible
 
+<p>
+
 # About Me
 I have decades of experience in software development and have been part of the DevOps movement since the beginning. My years as a developer and QA engineer gave me a penchant for the automation which DevOps promises. Having repeatable, reliable CI/CD processes is not only critical for fast, high-quality deliverables - it also satisfies like nothing else ;-)

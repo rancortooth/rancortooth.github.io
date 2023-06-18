@@ -1,0 +1,72 @@
+<h5 id="imagegeneratedwithstable_diffusionopenvino">(image generated with stable_diffusion.openvino)</h5>
+<h1 id="howtoinstallstablediffusiononoldmacbook">How to Install Stable Diffusion on Old Macbook</h1>
+<p>I have an old 2013 Macbook Pro lying around which I wanted to get Stable Diffusion running on. Unfortunately, Stable Diffusion cannot take advantage of the old Macbook's GPU capabilities, but you can still run stable_diffusion.openvino on it, albeit a bit slower.</p>
+<p><img src="assets/images/warning.png" width="30px"> <strong>I started with a totally clean install of MacOS on my old Macbook, so I had to install lots of prerequisites. This process took HOURS to complete!</strong></p>
+<h2 id="herearethestepsidid">Here are the steps I did:</h2>
+<ol>
+<li>Install brew if you don't already have it. Go to the <a href="https://brew.sh/" target="_blank">brew homepage for these instructions</a>
+<p></li>
+<li>Install some dependencies via brew:</li>
+</ol>
+<pre class="bash language-bash"><code class="hljs bash language-bash">brew install python3.9
+brew install gfortran (&lt;-- took a very long time to install)
+brew install openblas (&lt;-- took a long time to install)
+brew install jpeg
+</code></pre>
+<p><p></p>
+<ol start="3">
+<li>Set <strong>PKG_CONFIG_PATH</strong> so the wheel builds can find their libraries:</li>
+</ol>
+<pre><code class="hljs"><span class="hljs-built_in">export</span> <span class="hljs-attribute">PKG_CONFIG_PATH</span>=<span class="hljs-string">&quot;/usr/local/opt/openblas/lib/pkgconfig:/usr/local/opt/jpeg/lib/pkgconfig&quot;</span>
+</code></pre>
+<p><p></p>
+<ol start="4">
+<li>Clone StableDiffusion:</li>
+</ol>
+<pre class="bash language-bash"><code class="hljs bash language-bash">git <span class="hljs-built_in">clone</span> https://github.com/bes-dev/stable_diffusion.openvino
+</code></pre>
+<p><p></p>
+<ol start="5">
+<li>A few python related upgrades were necessary:</li>
+</ol>
+<pre><code class="hljs">python3 -m pip install <span class="hljs-comment">--upgrade pip</span>
+python3 -m pip install <span class="hljs-comment">--upgrade pillow</span>
+pip3 install <span class="hljs-comment">--upgrade setuptools</span>
+</code></pre>
+<p><p></p>
+<ol start="6">
+<li>Change directories into <strong>stable_diffusion.openvino</strong>
+<p></li>
+<li>Edit the <strong>requirements.txt</strong> file and change the contents to look like this:</li>
+</ol>
+<pre class="text language-text"><code class="hljs text language-text">numpy==1.24.3
+opencv-python==4.5.5.64
+transformers==4.16.2
+diffusers==0.2.4
+tqdm==4.64.0
+openvino==2023.0.0
+huggingface_hub==0.9.0
+scipy==1.9.3
+streamlit==1.12.0
+watchdog==2.1.9
+ftfy==6.1.1
+streamlit_drawable_canvas==0.9.1
+pillow==9.0.1
+piexif==1.1.3
+</code></pre>
+<p><p></p>
+<ol start="8">
+<li>Install stable diffusion's requirements:</li>
+</ol>
+<pre class="bash language-bash"><code class="hljs bash language-bash">pip3 install -r requirements.txt
+</code></pre>
+<p><p></p>
+<h2 id="troubleshootingissues">Troubleshooting issues</h2>
+<ul>
+<li>Most of the time the issues were related to the versions of scipy, pillow, and openvino not being just right in the requirements.txt file</li>
+<li>The errors produced can be insanely verbose, but the most helpful info is typically near the end of the stacks</li>
+</ul>
+<p><p></p>
+<h2 id="runningstablediffusionai">Running stable diffusion AI</h2>
+<pre><code class="hljs">python .\<span class="hljs-built_in">demo</span>.py --<span class="hljs-built_in">prompt</span> <span class="hljs-string">&quot;kitten car&quot;</span>
+</code></pre>

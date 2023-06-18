@@ -44,7 +44,7 @@ pip install -r requirements.txt
 <p>
 ## Running stable diffusion AI
 ```
-python .\demo.py --prompt
+python .\demo.py --prompt "kitten car"
 ```
 <p>
 ## Powershell script to run many iterations of the same prompt
