@@ -20,6 +20,13 @@ Normal speakers or headphones transmit sound through the air which then vibrates
 
 Yes and no. To test them out, I originally bought an expensive pair for around $180 (SHOKZ OpenRun Pro). When I found that they seemed to make a difference I started wondering how well a cheaper pair would work. I purchased a cheaper pair for around $32 (OUFUNI) and was pleasantly surprised at how close they were to the more expensive ones. Yes, the SHOKZ felt higher quality, the charger snaps onto the headphones a bit better, and they have longer battery life - but the biggest difference is not voice, but music quality. These headphones are typically marketed as an athletic alternative to traditional headphones since they're water resistant and let you hear everything around you. However, their music fidelity isn't so great. The SHOKZ reproduced music better than the OUFUNI but neither could compare to even my mid-range Sony over-the-ear headphones for music sound quality. However, if human speech is mostly your concern then the difference there was almost unnoticeable.
 
+## SHOKZ Bone Conduction Headphones
+<img src="assets/images/shokz.jpg" width="300px">
+<p>
+## OUFUNI Bone Conduction Headphones
+<img src="assets/images/oufuni.jpg" width="300px">
+<p>
+
 # Warnings
 
 Bone conduction headphones can still cause hearing damage if played too loudly. As always, don't turn them up too high! Also, these headphones did give me a slight headache when I first started using them. It seemed to go away and hasn't come back. I've also read that they have the potential to cause dizziness in some people. I'm fairly sensitive when it comes to motion sickness but these didn't bother me in that way at all. One more small warning - they startled me when I used them for the first time! You can feel them vibrating and buzzing on the side of your head and it's a bit freaky at first.
