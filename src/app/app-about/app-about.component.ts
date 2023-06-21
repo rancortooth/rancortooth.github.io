@@ -28,7 +28,7 @@ export class AppAboutComponent implements OnInit {
     this.title.setTitle("Starship Fluke About Site and Author")
     this.meta.addTags([
       { name: 'description', content: 'About Starship Fluke and contact information' },
-      { name: 'robots', content: 'index,nofollow'} ,
+      { name: 'robots', content: 'index,follow'} ,
     ], true);
     this.metaService.createCanonicalURL();
   }

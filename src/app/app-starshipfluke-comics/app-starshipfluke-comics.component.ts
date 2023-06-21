@@ -42,11 +42,7 @@ export class AppStarshipflukeComicsComponent implements OnInit, OnChanges, After
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
         this.meta.removeTag('name=robots'); 
-        if (this.episode == 1) {
-          this.meta.addTags([{ name: 'robots', content: 'index'}]);
-        } else {
-          this.meta.addTags([{ name: 'robots', content: 'noindex'}]);
-        }
+        this.meta.addTags([{ name: 'robots', content: 'index'}]);
         return;
       }
       this.scrolldiv.nativeElement.scrollTop = 0
